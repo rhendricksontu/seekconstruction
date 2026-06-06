@@ -645,6 +645,7 @@
     p.appendChild(textField('Office address', c, 'address', {help:'Used for the map link. Put a comma after the street.'}));
     p.appendChild(textField('Service area', c, 'serviceArea', {help:'Use <code> · </code> to separate.'}));
     p.appendChild(textField('Site types', c, 'siteType', {help:'Use <code> · </code> to separate.'}));
+    p.appendChild(textField('Bid form delivery link (Formspree)', c, 'formEndpoint', {help:'Advanced: the Formspree endpoint that bid requests are sent through (looks like <code>https://formspree.io/f/xxxxxxxx</code>). Leave blank to fall back to opening the visitor’s email app. Ryan can set this up.'}));
   }
 
   function buildMeta(p){

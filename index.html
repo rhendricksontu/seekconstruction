@@ -277,6 +277,10 @@
   .fg textarea{min-height:120px;resize:vertical}
   .frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
   .form .note{font-size:.82rem;color:var(--muted);margin-top:.8rem}
+  .form-status{margin-top:.9rem;text-align:center;font-size:.92rem;padding:.7rem .9rem;border-radius:4px}
+  .form-status.ok{background:#e8f5ee;color:#216c43;border:1px solid #bfe3cd}
+  .form-status.err{background:#fbecea;color:#c0392b;border:1px solid #f0cfc9}
+  .form button[type=submit]{font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.09em}
 
   /* ---------- Footer ---------- */
   footer.site{background:#fff;color:var(--muted);padding:3.5rem 0 1.8rem;border-top:1px solid var(--line)}
@@ -518,23 +522,26 @@
       <div class="area" id="d-area"></div>
     </div>
 
-    <div class="form reveal">
+    <form class="form reveal" id="bidform" novalidate>
       <h3>Tell us about your project</h3>
       <div class="frow">
-        <div class="fg"><label>Name</label><input type="text" placeholder="Your name"></div>
-        <div class="fg"><label>Company</label><input type="text" placeholder="GC / Developer"></div>
+        <div class="fg"><label>Name</label><input type="text" name="name" placeholder="Your name" required></div>
+        <div class="fg"><label>Company</label><input type="text" name="company" placeholder="GC / Developer"></div>
       </div>
       <div class="frow">
-        <div class="fg"><label>Email</label><input type="email" placeholder="you@email.com"></div>
-        <div class="fg"><label>Phone</label><input type="tel" placeholder="(405) 000-0000"></div>
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="you@email.com" required></div>
+        <div class="fg"><label>Phone</label><input type="tel" name="phone" placeholder="(405) 000-0000"></div>
       </div>
       <div class="fg"><label>Project Type</label>
-        <select><option>Excavating &amp; Earthwork</option><option>Site Work &amp; Grading</option><option>Storm &amp; Drainage</option><option>Underground Utilities</option><option>Multiple / Full Site Package</option></select>
+        <select name="project type"><option>Excavating &amp; Earthwork</option><option>Site Work &amp; Grading</option><option>Storm &amp; Drainage</option><option>Underground Utilities</option><option>Multiple / Full Site Package</option></select>
       </div>
-      <div class="fg"><label>Project Details</label><textarea placeholder="Location, scope, timeline, and any plans you'd like to share."></textarea></div>
-      <a id="d-form-send" href="#" class="btn btn-navy" style="width:100%;justify-content:center">Send Bid Request</a>
+      <div class="fg"><label>Project Details</label><textarea name="details" placeholder="Location, scope, timeline, and any plans you'd like to share."></textarea></div>
+      <!-- spam honeypot: real people leave this blank -->
+      <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+      <button type="submit" id="d-form-send" class="btn btn-navy" style="width:100%;justify-content:center">Send Bid Request</button>
+      <p class="form-status" id="d-form-status" style="display:none" role="status" aria-live="polite"></p>
       <p class="note" style="text-align:center">Prefer to talk it through? Call or text <a id="d-note-phone" href="#" style="color:var(--steel);font-weight:600"></a>.</p>
-    </div>
+    </form>
   </div>
 </section>
 
@@ -698,6 +705,7 @@
     "intro": "Have a site that needs moving, grading, or utilities? Send us your plans and we'll get you a number.",
     "phone": "405-215-1096",
     "email": "estimator@seekconstructionllc.com",
+    "formEndpoint": "",
     "address": "6116 NW 178th St, Edmond, OK 73012",
     "serviceArea": "Statewide Oklahoma · & Surrounding States",
     "siteType": "Public · Commercial · Tribal · Private"
@@ -803,7 +811,35 @@
     var e=el(p[0]); if(e){ e.textContent=p[1]||''; e.href=telHref(p[1]); }
   });
   ['d-email','d-foot-email'].forEach(function(id){ var e=el(id); if(e){ e.textContent=ct.email||''; e.href='mailto:'+(ct.email||''); } });
-  var fs=el('d-form-send'); if(fs){ fs.href='mailto:'+(ct.email||'')+'?subject='+encodeURIComponent('Bid Request - Seek Construction'); }
+  // ---------- BID REQUEST FORM ----------
+  var bidform = el('bidform'), formStatus = el('d-form-status'), sendBtn = el('d-form-send');
+  function setFormStatus(msg, kind){ if(!formStatus) return; formStatus.textContent=msg; formStatus.style.display='block'; formStatus.className='form-status '+(kind||''); }
+  if(bidform){
+    bidform.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!bidform.reportValidity || bidform.reportValidity()){
+        var endpoint = ct.formEndpoint || '';
+        if(endpoint){
+          // Real submission: posts straight to estimator@... via the form service.
+          if(sendBtn) sendBtn.disabled = true;
+          setFormStatus('Sending your request…','');
+          fetch(endpoint, { method:'POST', headers:{'Accept':'application/json'}, body:new FormData(bidform) })
+            .then(function(r){
+              if(r.ok){ bidform.reset(); setFormStatus("Thank you! Your bid request has been sent. We'll be in touch soon.", 'ok'); }
+              else { return r.json().then(function(d){ throw new Error((d&&d.errors&&d.errors[0]&&d.errors[0].message)||'error'); }); }
+            })
+            .catch(function(){ setFormStatus('Sorry, that didn’t go through. Please email '+(ct.email||'')+' directly.','err'); })
+            .then(function(){ if(sendBtn) sendBtn.disabled=false; });
+        } else {
+          // Fallback (until the form service is connected): open the visitor's
+          // email app pre-filled with everything they typed.
+          var fd=new FormData(bidform), lines=[];
+          fd.forEach(function(v,k){ if(k!=='_gotcha' && String(v).trim()) lines.push(k.replace(/\b\w/g,function(c){return c.toUpperCase();})+': '+v); });
+          window.location.href='mailto:'+(ct.email||'')+'?subject='+encodeURIComponent('Bid Request - Seek Construction')+'&body='+encodeURIComponent(lines.join('\n'));
+        }
+      }
+    });
+  }
   var of=el('d-office'); if(of){ of.textContent=ct.address||''; of.href=mapsHref(ct.address); }
   var fof=el('d-foot-office'); if(fof){
     var parts=String(ct.address||'').split(/,(.+)/);
