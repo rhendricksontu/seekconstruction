@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Site Editor · Seek Construction LLC</title>
+<style>
+  :root{
+    --navy:#0C243C; --steel:#1E6696; --amber:#d8932b; --amber-soft:#e7ad4d;
+    --sand:#f6f3ec; --sand-2:#efe9dd; --ink:#0C243C; --muted:#5d6573;
+    --line:#e2dccd; --paper:#fff; --ok:#2f8f5b; --err:#c0392b; --radius:6px;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--sans);color:var(--ink);background:var(--sand);line-height:1.5;-webkit-font-smoothing:antialiased}
+  a{color:var(--steel)}
+  img{max-width:100%;display:block}
+  .hidden{display:none!important}
+
+  /* ---- Gate (setup / login) ---- */
+  .gate{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:1.5rem;
+    background:linear-gradient(160deg,var(--navy) 0%,#16395a 70%,var(--steel) 145%)}
+  .gate-card{background:#fff;border-radius:10px;box-shadow:0 30px 70px -30px rgba(0,0,0,.6);
+    width:100%;max-width:440px;padding:2.4rem 2.2rem}
+  .gate-card h1{font-size:1.5rem;color:var(--navy);margin-bottom:.3rem}
+  .gate-card .sub{color:var(--muted);font-size:.95rem;margin-bottom:1.6rem}
+  .gate-card .logo{display:flex;align-items:center;gap:.6rem;margin-bottom:1.4rem;font-weight:700;color:var(--navy)}
+  .gate-card .logo span{width:30px;height:30px;border-radius:6px;background:var(--amber);display:inline-block}
+
+  label{display:block;font-size:.82rem;font-weight:600;color:var(--navy);margin:.9rem 0 .35rem;text-transform:uppercase;letter-spacing:.04em}
+  input,textarea,select{width:100%;padding:.7rem .8rem;border:1px solid var(--line);border-radius:var(--radius);
+    font-family:inherit;font-size:1rem;background:var(--sand);transition:.15s}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--steel);background:#fff;box-shadow:0 0 0 3px rgba(30,102,150,.12)}
+  textarea{min-height:90px;resize:vertical;line-height:1.5}
+  .help{font-size:.78rem;color:var(--muted);margin-top:.3rem}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;cursor:pointer;
+    font-family:inherit;font-weight:600;font-size:.95rem;padding:.75rem 1.3rem;border-radius:var(--radius);
+    border:2px solid transparent;transition:.15s;background:var(--amber);color:var(--navy)}
+  .btn:hover{filter:brightness(1.05)}
+  .btn:disabled{opacity:.55;cursor:not-allowed}
+  .btn.full{width:100%}
+  .btn.ghost{background:transparent;border-color:var(--line);color:var(--navy)}
+  .btn.ghost:hover{border-color:var(--steel);background:#fff}
+  .btn.sm{padding:.4rem .7rem;font-size:.82rem}
+  .btn.danger{background:transparent;border-color:#e9c4bf;color:var(--err)}
+  .btn.danger:hover{background:#fbecea;border-color:var(--err)}
+
+  .msg{margin-top:1rem;font-size:.9rem;padding:.7rem .9rem;border-radius:var(--radius);display:none}
+  .msg.show{display:block}
+  .msg.ok{background:#e8f5ee;color:var(--ok);border:1px solid #bfe3cd}
+  .msg.err{background:#fbecea;color:var(--err);border:1px solid #f0cfc9}
+
+  /* ---- App shell ---- */
+  .topbar{position:sticky;top:0;z-index:30;background:var(--navy);color:#fff;display:flex;align-items:center;
+    gap:1rem;padding:.7rem 1.2rem;box-shadow:0 6px 20px -12px rgba(0,0,0,.5)}
+  .topbar .brand{display:flex;align-items:center;gap:.6rem;font-weight:700;font-size:1.05rem;margin-right:auto}
+  .topbar .brand span.dot{width:22px;height:22px;border-radius:5px;background:var(--amber);display:inline-block}
+  .topbar .status{font-size:.85rem;color:#9fb2d0;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .topbar .status.ok{color:#9fe0bb}
+  .topbar .status.err{color:#ffb3a8}
+  .topbar .btn.sm{padding:.45rem .8rem}
+
+  .tabs{position:sticky;top:53px;z-index:20;background:var(--sand-2);border-bottom:1px solid var(--line);
+    display:flex;gap:.2rem;overflow-x:auto;padding:.4rem .8rem}
+  .tab{flex:none;border:0;background:transparent;font-family:inherit;font-weight:600;font-size:.9rem;
+    color:var(--muted);padding:.5rem .9rem;border-radius:var(--radius);cursor:pointer;white-space:nowrap}
+  .tab:hover{color:var(--navy)}
+  .tab.active{background:#fff;color:var(--navy);box-shadow:0 2px 8px -4px rgba(0,0,0,.2)}
+
+  main{max-width:860px;margin:0 auto;padding:1.6rem 1.2rem 6rem}
+  .panel{display:none}
+  .panel.active{display:block}
+  .panel-head{margin-bottom:1.2rem}
+  .panel-head h2{font-size:1.4rem;color:var(--navy)}
+  .panel-head p{color:var(--muted);font-size:.92rem;margin-top:.2rem}
+
+  .field{margin-bottom:1.1rem}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:560px){.grid2{grid-template-columns:1fr}}
+
+  .card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.1rem .9rem;margin-bottom:1rem;position:relative}
+  .card-bar{display:flex;align-items:center;gap:.4rem;margin-bottom:.8rem}
+  .card-bar .ttl{font-weight:700;color:var(--navy);font-size:.95rem;margin-right:auto}
+  .card-bar .num{background:var(--sand-2);color:var(--muted);font-size:.75rem;font-weight:700;border-radius:20px;padding:.1rem .5rem}
+  .iconbtn{border:1px solid var(--line);background:#fff;border-radius:5px;cursor:pointer;width:30px;height:30px;
+    display:inline-flex;align-items:center;justify-content:center;font-size:1rem;color:var(--muted);line-height:1}
+  .iconbtn:hover{border-color:var(--steel);color:var(--navy)}
+  .iconbtn:disabled{opacity:.35;cursor:not-allowed}
+  .iconbtn.del:hover{border-color:var(--err);color:var(--err);background:#fbecea}
+
+  .add-row{margin-top:.4rem}
+
+  /* image control */
+  .imgctl{display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+  .thumb{width:120px;height:90px;border-radius:6px;border:1px dashed var(--line);background:var(--sand);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;color:var(--muted);font-size:.75rem;text-align:center;padding:.3rem}
+  .thumb img{width:100%;height:100%;object-fit:cover}
+  .imgctl .actions{display:flex;gap:.5rem;flex-wrap:wrap}
+
+  .tags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.4rem}
+  .tag{display:inline-flex;align-items:center;gap:.35rem;background:var(--sand-2);border:1px solid var(--line);
+    border-radius:20px;padding:.2rem .3rem .2rem .7rem;font-size:.82rem}
+  .tag button{border:0;background:transparent;cursor:pointer;color:var(--muted);font-size:.95rem;line-height:1;padding:0 .2rem}
+  .tag button:hover{color:var(--err)}
+
+  .savebar{position:fixed;bottom:0;left:0;right:0;z-index:25;background:#fff;border-top:1px solid var(--line);
+    box-shadow:0 -8px 24px -16px rgba(0,0,0,.4);padding:.7rem 1.2rem;display:flex;align-items:center;gap:1rem}
+  .savebar .info{font-size:.85rem;color:var(--muted);margin-right:auto}
+  .dirty-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--amber);margin-right:.4rem;vertical-align:middle}
+
+  .overlay{position:fixed;inset:0;background:rgba(12,36,60,.6);z-index:60;display:flex;align-items:center;justify-content:center}
+  .overlay .box{background:#fff;border-radius:10px;padding:1.6rem;max-width:380px;text-align:center}
+  .spinner{width:34px;height:34px;border:3px solid var(--sand-2);border-top-color:var(--steel);border-radius:50%;
+    animation:spin .8s linear infinite;margin:0 auto 1rem}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- ============================ GATE ============================ -->
+<div class="gate" id="gate">
+  <div class="gate-card">
+    <div class="logo"><span></span> Seek Construction</div>
+
+    <!-- LOGIN (returning user) -->
+    <div id="view-login" class="hidden">
+      <h1>Site Editor</h1>
+      <p class="sub">Enter your passcode to edit the website.</p>
+      <form id="form-login">
+        <label for="login-pass">Passcode</label>
+        <input type="password" id="login-pass" autocomplete="current-password" autofocus>
+        <div class="msg err" id="login-err"></div>
+        <button class="btn full" type="submit" style="margin-top:1.2rem">Log in</button>
+      </form>
+      <p class="help" style="margin-top:1.2rem">Forgot your passcode, or need to reconnect? <a href="#" id="link-reset">Reset this device</a>.</p>
+    </div>
+
+    <!-- SETUP (first run / after reset) -->
+    <div id="view-setup" class="hidden">
+      <h1>One-time setup</h1>
+      <p class="sub">Connect this editor to the website. You only do this once per device.</p>
+      <form id="form-setup">
+        <label for="setup-token">GitHub access token</label>
+        <input type="password" id="setup-token" placeholder="github_pat_..." autocomplete="off">
+        <div class="help">Paste the token created during setup. It is encrypted with your passcode and stored only on this device.</div>
+
+        <div class="grid2" style="margin-top:.3rem">
+          <div>
+            <label for="setup-owner">Repo owner</label>
+            <input type="text" id="setup-owner" value="rhendricksontu" autocomplete="off">
+          </div>
+          <div>
+            <label for="setup-repo">Repo name</label>
+            <input type="text" id="setup-repo" value="seekconstruction" autocomplete="off">
+          </div>
+        </div>
+
+        <label for="setup-pass">Create a passcode</label>
+        <input type="password" id="setup-pass" placeholder="At least 6 characters" autocomplete="new-password">
+        <label for="setup-pass2">Confirm passcode</label>
+        <input type="password" id="setup-pass2" autocomplete="new-password">
+
+        <div class="msg err" id="setup-err"></div>
+        <button class="btn full" type="submit" style="margin-top:1.2rem">Connect &amp; verify</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ============================ APP ============================ -->
+<div id="app" class="hidden">
+  <div class="topbar">
+    <div class="brand"><span class="dot"></span> Site Editor</div>
+    <div class="status" id="topstatus"></div>
+    <a class="btn ghost sm" id="btn-preview" href="index.html" target="_blank" rel="noopener" style="color:#fff;border-color:rgba(255,255,255,.4)">View site</a>
+    <button class="btn ghost sm" id="btn-logout" style="color:#fff;border-color:rgba(255,255,255,.4)">Log out</button>
+  </div>
+
+  <div class="tabs" id="tabs"></div>
+
+  <main id="panels"></main>
+
+  <div class="savebar">
+    <div class="info" id="saveinfo">All changes saved.</div>
+    <button class="btn" id="btn-save" disabled>Save &amp; publish</button>
+  </div>
+</div>
+
+<div class="overlay hidden" id="overlay"><div class="box"><div class="spinner"></div><div id="overlay-text">Working…</div></div></div>
+
+<script>
+(function(){
+  "use strict";
+
+  // -------------------------------------------------------------------------
+  // Storage keys
+  // -------------------------------------------------------------------------
+  var VAULT_KEY = 'sc_admin_vault';   // encrypted token blob
+  var CFG_KEY   = 'sc_admin_cfg';     // {owner, repo, branch}
+  var API = 'https://api.github.com';
+
+  // -------------------------------------------------------------------------
+  // Small DOM helpers
+  // -------------------------------------------------------------------------
+  function $(id){ return document.getElementById(id); }
+  function ce(tag, attrs, kids){
+    var e = document.createElement(tag);
+    if(attrs) for(var k in attrs){
+      if(k==='class') e.className=attrs[k];
+      else if(k==='text') e.textContent=attrs[k];
+      else if(k==='html') e.innerHTML=attrs[k];
+      else if(k.slice(0,2)==='on') e.addEventListener(k.slice(2).toLowerCase(), attrs[k]);
+      else if(attrs[k]!=null) e.setAttribute(k, attrs[k]);
+    }
+    (kids||[]).forEach(function(c){ if(c!=null) e.appendChild(typeof c==='string'?document.createTextNode(c):c); });
+    return e;
+  }
+  function showMsg(el, text, kind){ el.textContent=text; el.className='msg '+(kind||'err')+' show'; }
+  function hideMsg(el){ el.className='msg'; }
+
+  // -------------------------------------------------------------------------
+  // Crypto: encrypt the token with the passcode (AES-GCM + PBKDF2)
+  // -------------------------------------------------------------------------
+  var enc = new TextEncoder(), dec = new TextDecoder();
+  function b64(buf){ var b=new Uint8Array(buf),s=''; for(var i=0;i<b.length;i++) s+=String.fromCharCode(b[i]); return btoa(s); }
+  function unb64(str){ var s=atob(str),b=new Uint8Array(s.length); for(var i=0;i<s.length;i++) b[i]=s.charCodeAt(i); return b; }
+
+  function deriveKey(pass, salt){
+    return crypto.subtle.importKey('raw', enc.encode(pass), 'PBKDF2', false, ['deriveKey'])
+      .then(function(base){
+        return crypto.subtle.deriveKey(
+          {name:'PBKDF2', salt:salt, iterations:120000, hash:'SHA-256'},
+          base, {name:'AES-GCM', length:256}, false, ['encrypt','decrypt']);
+      });
+  }
+  function encryptToken(token, pass){
+    var salt = crypto.getRandomValues(new Uint8Array(16));
+    var iv = crypto.getRandomValues(new Uint8Array(12));
+    return deriveKey(pass, salt).then(function(key){
+      return crypto.subtle.encrypt({name:'AES-GCM', iv:iv}, key, enc.encode(token));
+    }).then(function(ct){
+      return {v:1, salt:b64(salt), iv:b64(iv), data:b64(ct)};
+    });
+  }
+  function decryptToken(blob, pass){
+    var salt = unb64(blob.salt), iv = unb64(blob.iv), data = unb64(blob.data);
+    return deriveKey(pass, salt).then(function(key){
+      return crypto.subtle.decrypt({name:'AES-GCM', iv:iv}, key, data);
+    }).then(function(pt){ return dec.decode(pt); });
+  }
+
+  // -------------------------------------------------------------------------
+  // Session state
+  // -------------------------------------------------------------------------
+  var cfg = null;       // {owner, repo, branch}
+  var token = null;     // in memory only
+  var data = null;      // the content object
+  var dataSha = null;   // sha of data.json for updates
+  var dirty = false;
+  var activeTab = 'hero';
+
+  // -------------------------------------------------------------------------
+  // GitHub API
+  // -------------------------------------------------------------------------
+  function gh(method, path, body){
+    return fetch(API + path, {
+      method: method,
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28'
+      },
+      body: body ? JSON.stringify(body) : undefined
+    }).then(function(r){
+      return r.text().then(function(t){
+        var j = t ? JSON.parse(t) : {};
+        if(!r.ok){
+          var m = (j && j.message) ? j.message : ('HTTP '+r.status);
+          var err = new Error(m); err.status = r.status; throw err;
+        }
+        return j;
+      });
+    });
+  }
+  function repoPath(p){ return '/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+p; }
+
+  // Read a UTF-8 file (returns {text, sha}). Returns null if it does not exist.
+  function getFile(path){
+    return gh('GET', repoPath(path)+'?ref='+cfg.branch).then(function(j){
+      var raw = (j.content||'').replace(/\n/g,'');
+      var bytes = unb64(raw);
+      return {text: dec.decode(bytes), sha: j.sha};
+    }).catch(function(e){ if(e.status===404) return null; throw e; });
+  }
+  // Write a file from base64 content.
+  function putFileB64(path, contentB64, message, sha){
+    var body = {message:message, content:contentB64, branch:cfg.branch};
+    if(sha) body.sha = sha;
+    return gh('PUT', repoPath(path), body);
+  }
+
+  // -------------------------------------------------------------------------
+  // Image handling: resize -> jpeg -> upload, return stored path/filename
+  // -------------------------------------------------------------------------
+  function slug(s){ return String(s||'image').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40) || 'image'; }
+
+  function resizeToJpegB64(file, maxDim, quality){
+    return new Promise(function(resolve, reject){
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function(){
+        var w = img.naturalWidth, h = img.naturalHeight;
+        var scale = Math.min(1, maxDim/Math.max(w,h));
+        var cw = Math.round(w*scale), ch = Math.round(h*scale);
+        var cv = document.createElement('canvas'); cv.width=cw; cv.height=ch;
+        var cx = cv.getContext('2d');
+        cx.fillStyle = '#ffffff'; cx.fillRect(0,0,cw,ch);
+        cx.drawImage(img, 0, 0, cw, ch);
+        URL.revokeObjectURL(url);
+        var dataUrl = cv.toDataURL('image/jpeg', quality);
+        resolve(dataUrl.split(',')[1]);
+      };
+      img.onerror = function(){ URL.revokeObjectURL(url); reject(new Error('Could not read that image file.')); };
+      img.src = url;
+    });
+  }
+
+  // dir = folder in repo (e.g. 'images' or 'images/projects'); returns the
+  // full repo path that was written.
+  function uploadImage(file, dir, nameHint){
+    return resizeToJpegB64(file, 1600, 0.82).then(function(b64data){
+      var name = slug(nameHint) + '-' + Date.now().toString(36) + '.jpg';
+      var path = dir + '/' + name;
+      return putFileB64(path, b64data, 'Add image '+name).then(function(){ return path; });
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // Dirty tracking
+  // -------------------------------------------------------------------------
+  function markDirty(){
+    dirty = true;
+    $('btn-save').disabled = false;
+    $('saveinfo').innerHTML = '<span class="dirty-dot"></span>Unsaved changes';
+  }
+  function markClean(){
+    dirty = false;
+    $('btn-save').disabled = true;
+    $('saveinfo').textContent = 'All changes saved. The live site updates about a minute after you save.';
+  }
+  window.addEventListener('beforeunload', function(e){
+    if(dirty){ e.preventDefault(); e.returnValue=''; }
+  });
+
+  // -------------------------------------------------------------------------
+  // Generic field builders
+  // -------------------------------------------------------------------------
+  // Bind a text input/textarea to obj[key].
+  function textField(label, obj, key, opts){
+    opts = opts || {};
+    var input = opts.area
+      ? ce('textarea', {value:''})
+      : ce('input', {type:'text'});
+    input.value = obj[key]==null ? '' : obj[key];
+    if(opts.placeholder) input.placeholder = opts.placeholder;
+    input.addEventListener('input', function(){ obj[key]=input.value; markDirty(); });
+    var wrap = ce('div', {class:'field'}, [ ce('label', {text:label}), input ]);
+    if(opts.help) wrap.appendChild(ce('div', {class:'help', html:opts.help}));
+    return wrap;
+  }
+
+  function selectField(label, obj, key, options){
+    var sel = ce('select', {});
+    options.forEach(function(o){
+      var op = ce('option', {value:o, text:o});
+      if(obj[key]===o) op.selected = true;
+      sel.appendChild(op);
+    });
+    sel.addEventListener('change', function(){ obj[key]=sel.value; markDirty(); });
+    return ce('div', {class:'field'}, [ ce('label', {text:label}), sel ]);
+  }
+
+  // Image field bound to obj[key]. storeMode 'path' stores 'images/..', 'name' stores bare filename.
+  function imageField(label, obj, key, dir, storeMode, nameHint){
+    var thumb = ce('div', {class:'thumb'});
+    function paint(){
+      thumb.innerHTML = '';
+      var val = obj[key];
+      if(val){
+        var src = storeMode==='name' ? (dir + '/' + val) : val;
+        thumb.appendChild(ce('img', {src: rawUrl(src), alt:''}));
+      } else {
+        thumb.appendChild(ce('span', {text:'No image yet'}));
+      }
+    }
+    var fileInput = ce('input', {type:'file', accept:'image/*', class:'hidden'});
+    var upBtn = ce('button', {class:'btn ghost sm', type:'button', text: obj[key]?'Replace photo':'Upload photo',
+      onclick:function(){ fileInput.click(); }});
+    var rmBtn = ce('button', {class:'btn danger sm', type:'button', text:'Remove',
+      onclick:function(){ obj[key]=''; paint(); rmBtn.classList.add('hidden'); upBtn.textContent='Upload photo'; markDirty(); }});
+    if(!obj[key]) rmBtn.classList.add('hidden');
+
+    fileInput.addEventListener('change', function(){
+      var f = fileInput.files[0]; if(!f) return;
+      busy('Uploading photo…');
+      uploadImage(f, dir, nameHint || label).then(function(path){
+        obj[key] = storeMode==='name' ? path.split('/').pop() : path;
+        paint(); rmBtn.classList.remove('hidden'); upBtn.textContent='Replace photo';
+        markDirty(); done(); topStatus('Photo uploaded. Click Save & publish when finished.', 'ok');
+      }).catch(function(e){ done(); topStatus('Upload failed: '+e.message, 'err'); })
+        .then(function(){ fileInput.value=''; });
+    });
+
+    paint();
+    return ce('div', {class:'field'}, [
+      ce('label', {text:label}),
+      ce('div', {class:'imgctl'}, [ thumb, ce('div', {class:'actions'}, [ upBtn, rmBtn ]) ]),
+      ce('div', {class:'help', text:'Large photos are automatically resized for fast loading.'})
+    ]);
+  }
+
+  function rawUrl(path){
+    // show the committed image straight from the repo
+    return 'https://raw.githubusercontent.com/'+cfg.owner+'/'+cfg.repo+'/'+cfg.branch+'/'+path+'?t='+Date.now();
+  }
+
+  // A reorderable / removable list of cards.
+  // render(item, index) returns the card body; factory() returns a new blank item.
+  function listEditor(arr, render, factory, opts){
+    opts = opts || {};
+    var host = ce('div', {});
+    function rebuild(){
+      host.innerHTML = '';
+      arr.forEach(function(item, i){
+        var up = ce('button', {class:'iconbtn', type:'button', title:'Move up', html:'&uarr;',
+          onclick:function(){ if(i>0){ arr.splice(i-1,0,arr.splice(i,1)[0]); markDirty(); rebuild(); } }});
+        var dn = ce('button', {class:'iconbtn', type:'button', title:'Move down', html:'&darr;',
+          onclick:function(){ if(i<arr.length-1){ arr.splice(i+1,0,arr.splice(i,1)[0]); markDirty(); rebuild(); } }});
+        if(i===0) up.disabled=true; if(i===arr.length-1) dn.disabled=true;
+        var del = ce('button', {class:'iconbtn del', type:'button', title:'Delete', html:'&times;',
+          onclick:function(){ if(confirm('Delete this '+(opts.noun||'item')+'?')){ arr.splice(i,1); markDirty(); rebuild(); } }});
+        var bar = ce('div', {class:'card-bar'}, [
+          ce('span', {class:'num', text:'#'+(i+1)}),
+          ce('span', {class:'ttl', text: opts.title ? opts.title(item, i) : ''}),
+          up, dn, del
+        ]);
+        host.appendChild(ce('div', {class:'card'}, [ bar, render(item, i) ]));
+      });
+    }
+    var add = ce('button', {class:'btn ghost', type:'button', text:'+ Add '+(opts.noun||'item'),
+      onclick:function(){ arr.push(factory()); markDirty(); rebuild(); }});
+    rebuild();
+    return ce('div', {}, [ host, ce('div', {class:'add-row'}, [ add ]) ]);
+  }
+
+  // Tag editor (array of strings) for service tags.
+  function tagEditor(arr){
+    var wrap = ce('div', {class:'field'});
+    var box = ce('div', {class:'tags'});
+    function rebuild(){
+      box.innerHTML = '';
+      arr.forEach(function(t, i){
+        box.appendChild(ce('span', {class:'tag'}, [ t,
+          ce('button', {type:'button', html:'&times;', title:'Remove',
+            onclick:function(){ arr.splice(i,1); markDirty(); rebuild(); }}) ]));
+      });
+    }
+    var input = ce('input', {type:'text', placeholder:'Type a tag and press Enter'});
+    input.addEventListener('keydown', function(e){
+      if(e.key==='Enter'){ e.preventDefault(); var v=input.value.trim(); if(v){ arr.push(v); input.value=''; markDirty(); rebuild(); } }
+    });
+    rebuild();
+    wrap.appendChild(ce('label', {text:'Tags'}));
+    wrap.appendChild(box);
+    wrap.appendChild(input);
+    return wrap;
+  }
+
+  // Array-of-strings editor (credentials, about paragraphs).
+  // Edits happen on a mirror of {v} boxes; a save-converter writes the plain
+  // string array back into owner[key] right before publishing.
+  var saveConverters = [];
+  function stringListEditor(owner, key, opts){
+    opts = opts || {};
+    var arr = owner[key] || (owner[key]=[]);
+    var boxes = arr.map(function(s){ return {v:s}; });
+    saveConverters.push(function(){ owner[key] = boxes.map(function(b){ return b.v; }); });
+    return listEditor(boxes,
+      function(item){
+        var input = opts.area ? ce('textarea',{}) : ce('input',{type:'text'});
+        input.value = item.v;
+        if(opts.placeholder) input.placeholder = opts.placeholder;
+        input.addEventListener('input', function(){ item.v=input.value; markDirty(); });
+        return ce('div', {class:'field'}, [ input ]);
+      },
+      function(){ return {v:''}; },
+      {noun: opts.noun||'item', title:function(it){ return (it.v||'').slice(0,40); }}
+    );
+  }
+
+  // -------------------------------------------------------------------------
+  // Panels
+  // -------------------------------------------------------------------------
+  var TABS = [
+    {id:'hero',     name:'Hero',        build:buildHero},
+    {id:'services', name:'Services',    build:buildServices},
+    {id:'why',      name:'Why Us',      build:buildWhy},
+    {id:'projects', name:'Projects',    build:buildProjects},
+    {id:'gallery',  name:'Gallery',     build:buildGallery},
+    {id:'about',    name:'About',       build:buildAbout},
+    {id:'contact',  name:'Contact',     build:buildContact},
+    {id:'meta',     name:'SEO / Title', build:buildMeta}
+  ];
+
+  function panelHead(title, desc){
+    return ce('div', {class:'panel-head'}, [ ce('h2',{text:title}), desc?ce('p',{text:desc}):null ]);
+  }
+
+  function buildHero(p){
+    var h = data.hero;
+    p.appendChild(panelHead('Hero', 'The top banner of the site.'));
+    p.appendChild(textField('Small label (top line)', h, 'eyebrowMain'));
+    p.appendChild(textField('Small label (second line)', h, 'eyebrowSub'));
+    p.appendChild(textField('Headline', h, 'h1', {area:true, help:'Wrap a word in *asterisks* to make it italic, e.g. <code>everything</code>.'}));
+    p.appendChild(textField('Sub-text', h, 'lead', {area:true}));
+    p.appendChild(textField('Photo caption', h, 'cardCaption', {help:'Use <code> · </code> (space-dot-space) to separate items.'}));
+    p.appendChild(imageField('Hero photo', h, 'heroImage', 'images', 'path', 'hero'));
+    p.appendChild(ce('label', {text:'Stat boxes'}));
+    p.appendChild(listEditor(h.stats,
+      function(s){ return ce('div', {class:'grid2'}, [ textField('Big value', s, 'value'), textField('Label', s, 'label') ]); },
+      function(){ return {value:'', label:''}; },
+      {noun:'stat', title:function(s){return s.value||'';}}));
+
+    p.appendChild(ce('label', {text:'Credential badges (the strip just under the hero)'}));
+    p.appendChild(stringListEditor(data, 'credentials', {noun:'badge'}));
+  }
+
+  function buildServices(p){
+    var s = data.services;
+    p.appendChild(panelHead('Services', 'The "What We Do" section.'));
+    p.appendChild(textField('Eyebrow', s, 'eyebrow'));
+    p.appendChild(textField('Heading', s, 'heading'));
+    p.appendChild(textField('Intro', s, 'intro', {area:true}));
+    p.appendChild(ce('label', {text:'Service cards'}));
+    p.appendChild(listEditor(s.cards,
+      function(c){
+        var box = ce('div', {});
+        box.appendChild(textField('Title', c, 'title'));
+        box.appendChild(textField('Description', c, 'desc', {area:true}));
+        if(!Array.isArray(c.tags)) c.tags=[];
+        box.appendChild(tagEditor(c.tags));
+        return box;
+      },
+      function(){ return {title:'', desc:'', tags:[]}; },
+      {noun:'service', title:function(c){return c.title||'';}}));
+  }
+
+  function buildWhy(p){
+    var w = data.why;
+    p.appendChild(panelHead('Why Us', 'The credentials / selling points section.'));
+    p.appendChild(textField('Eyebrow', w, 'eyebrow'));
+    p.appendChild(textField('Heading', w, 'heading'));
+    p.appendChild(textField('Intro', w, 'intro', {area:true}));
+    p.appendChild(ce('label', {text:'Cards'}));
+    p.appendChild(listEditor(w.cards,
+      function(c){
+        var box = ce('div', {});
+        box.appendChild(textField('Title', c, 'title'));
+        box.appendChild(textField('Description', c, 'desc', {area:true}));
+        return box;
+      },
+      function(){ return {title:'', desc:''}; },
+      {noun:'card', title:function(c){return c.title||'';}}));
+  }
+
+  var PROJECT_TYPES = ['Public','Commercial','Tribal','Private'];
+  function buildProjects(p){
+    var pr = data.projects;
+    p.appendChild(panelHead('Projects', 'Completed work. The percentage stats on the site are calculated automatically from these.'));
+    p.appendChild(textField('Eyebrow', pr, 'eyebrow'));
+    p.appendChild(textField('Heading', pr, 'heading'));
+    p.appendChild(textField('Intro', pr, 'intro', {area:true}));
+    p.appendChild(ce('label', {text:'Project list'}));
+    p.appendChild(listEditor(pr.items,
+      function(it){
+        var box = ce('div', {});
+        box.appendChild(ce('div', {class:'grid2'}, [
+          textField('Project name', it, 'n'),
+          textField('General contractor', it, 'gc')
+        ]));
+        box.appendChild(selectField('Type', it, 't', PROJECT_TYPES));
+        box.appendChild(imageField('Photo (optional)', it, 'img', 'images/projects', 'name', it.n||'project'));
+        return box;
+      },
+      function(){ return {n:'', gc:'', t:'Public'}; },
+      {noun:'project', title:function(it){return it.n||'';}}));
+  }
+
+  function buildGallery(p){
+    var g = data.gallery;
+    p.appendChild(panelHead('Gallery', 'Job-site photos.'));
+    p.appendChild(textField('Eyebrow', g, 'eyebrow'));
+    p.appendChild(textField('Heading', g, 'heading'));
+    p.appendChild(textField('Intro', g, 'intro', {area:true}));
+    p.appendChild(ce('label', {text:'Photos'}));
+    p.appendChild(listEditor(g.items,
+      function(it){
+        var box = ce('div', {});
+        box.appendChild(textField('Caption', it, 'caption'));
+        box.appendChild(imageField('Photo', it, 'image', 'images', 'path', it.caption||'gallery'));
+        return box;
+      },
+      function(){ return {caption:'', image:''}; },
+      {noun:'photo', title:function(it){return it.caption||'';}}));
+  }
+
+  function buildAbout(p){
+    var a = data.about;
+    p.appendChild(panelHead('About', 'The company story and "At a Glance" facts.'));
+    p.appendChild(textField('Eyebrow', a, 'eyebrow'));
+    p.appendChild(textField('Heading', a, 'heading'));
+    p.appendChild(ce('label', {text:'Paragraphs'}));
+    p.appendChild(stringListEditor(a, 'paragraphs', {area:true, noun:'paragraph'}));
+
+    p.appendChild(textField('"At a Glance" title', a, 'glanceTitle'));
+    p.appendChild(ce('label', {text:'At a Glance rows'}));
+    p.appendChild(listEditor(a.glance,
+      function(r){ return ce('div', {class:'grid2'}, [ textField('Label', r, 'label'), textField('Value', r, 'value', {help:'Use <code> · </code> to separate.'}) ]); },
+      function(){ return {label:'', value:''}; },
+      {noun:'row', title:function(r){return r.label||'';}}));
+  }
+
+  function buildContact(p){
+    var c = data.contact;
+    p.appendChild(panelHead('Contact', 'Phone, email, and address shown across the site.'));
+    p.appendChild(textField('Eyebrow', c, 'eyebrow'));
+    p.appendChild(textField('Heading', c, 'heading'));
+    p.appendChild(textField('Intro', c, 'intro', {area:true}));
+    p.appendChild(ce('div', {class:'grid2'}, [
+      textField('Phone', c, 'phone'),
+      textField('Email', c, 'email')
+    ]));
+    p.appendChild(textField('Office address', c, 'address', {help:'Used for the map link. Put a comma after the street.'}));
+    p.appendChild(textField('Service area', c, 'serviceArea', {help:'Use <code> · </code> to separate.'}));
+    p.appendChild(textField('Site types', c, 'siteType', {help:'Use <code> · </code> to separate.'}));
+  }
+
+  function buildMeta(p){
+    var m = data.meta;
+    p.appendChild(panelHead('SEO / Title', 'The browser tab title and the description search engines show.'));
+    p.appendChild(textField('Page title', m, 'title'));
+    p.appendChild(textField('Search description', m, 'description', {area:true, help:'Aim for about 1–2 sentences (under ~160 characters).'}));
+  }
+
+  // -------------------------------------------------------------------------
+  // Render tabs + panels
+  // -------------------------------------------------------------------------
+  // Build every panel ONCE (so editing state lives in the DOM); tab clicks just
+  // toggle which one is visible.
+  function renderApp(){
+    var tabsEl = $('tabs'); tabsEl.innerHTML='';
+    var panelsEl = $('panels'); panelsEl.innerHTML='';
+    saveConverters = [];
+    TABS.forEach(function(t){
+      var btn = ce('button', {class:'tab', text:t.name});
+      btn.addEventListener('click', function(){ setActive(t.id); });
+      tabsEl.appendChild(btn); t._btn = btn;
+      var panel = ce('div', {class:'panel'});
+      t.build(panel);
+      panelsEl.appendChild(panel); t._panel = panel;
+    });
+    setActive(activeTab);
+  }
+  function setActive(id){
+    activeTab = id;
+    TABS.forEach(function(t){
+      var on = (t.id===id);
+      t._btn.classList.toggle('active', on);
+      t._panel.classList.toggle('active', on);
+    });
+    window.scrollTo(0,0);
+  }
+
+  // -------------------------------------------------------------------------
+  // Save
+  // -------------------------------------------------------------------------
+  function doSave(){
+    // write string-array editors (credentials, paragraphs) back into the data
+    saveConverters.forEach(function(fn){ fn(); });
+    cleanup(data);
+    busy('Publishing…');
+    var json = JSON.stringify(data, null, 2) + '\n';
+    var contentB64 = b64(enc.encode(json));
+    putFileB64('data.json', contentB64, 'Update site content', dataSha).then(function(res){
+      dataSha = res.content.sha;
+      done(); markClean();
+      topStatus('Saved! The live site will refresh in about a minute.', 'ok');
+    }).catch(function(e){
+      done();
+      topStatus('Save failed: '+e.message, 'err');
+      alert('Could not save: '+e.message+'\n\nYour changes are still here — try Save again in a moment.');
+    });
+  }
+
+  // remove empty helper fields before serialising
+  function cleanup(d){
+    (d.projects.items||[]).forEach(function(it){ if(it.img==='') delete it.img; });
+  }
+
+  // -------------------------------------------------------------------------
+  // Overlay + status
+  // -------------------------------------------------------------------------
+  function busy(text){ $('overlay-text').textContent = text||'Working…'; $('overlay').classList.remove('hidden'); }
+  function done(){ $('overlay').classList.add('hidden'); }
+  var statusTimer;
+  function topStatus(text, kind){
+    var el = $('topstatus'); el.textContent=text; el.className='status'+(kind?' '+kind:'');
+    clearTimeout(statusTimer);
+    if(kind==='ok') statusTimer=setTimeout(function(){ el.textContent=''; el.className='status'; }, 8000);
+  }
+
+  // -------------------------------------------------------------------------
+  // Boot the editor after auth
+  // -------------------------------------------------------------------------
+  function startApp(){
+    busy('Loading your site content…');
+    getFile('data.json').then(function(f){
+      if(f){ data = JSON.parse(f.text); dataSha = f.sha; }
+      else { throw new Error('data.json was not found in the repository.'); }
+      ensureShape(data);
+      $('gate').classList.add('hidden');
+      $('app').classList.remove('hidden');
+      renderApp(); markClean(); done();
+    }).catch(function(e){
+      done();
+      showMsg($('login-err'), 'Connected, but could not load content: '+e.message, 'err');
+      // fall back to gate
+      $('app').classList.add('hidden'); $('gate').classList.remove('hidden');
+    });
+  }
+
+  // make sure expected arrays/objects exist so the editor never crashes
+  function ensureShape(d){
+    d.meta = d.meta||{}; d.hero=d.hero||{}; d.hero.stats=d.hero.stats||[];
+    d.credentials = d.credentials||[];
+    d.services=d.services||{}; d.services.cards=d.services.cards||[];
+    d.why=d.why||{}; d.why.cards=d.why.cards||[];
+    d.projects=d.projects||{}; d.projects.items=d.projects.items||[];
+    d.gallery=d.gallery||{}; d.gallery.items=d.gallery.items||[];
+    d.about=d.about||{}; d.about.paragraphs=d.about.paragraphs||[]; d.about.glance=d.about.glance||[];
+    d.contact=d.contact||{};
+  }
+
+  // -------------------------------------------------------------------------
+  // Gate logic: setup vs login
+  // -------------------------------------------------------------------------
+  function showGate(){
+    var vault = localStorage.getItem(VAULT_KEY);
+    cfg = JSON.parse(localStorage.getItem(CFG_KEY)||'null');
+    if(vault && cfg){ $('view-login').classList.remove('hidden'); $('view-setup').classList.add('hidden'); $('login-pass').focus(); }
+    else { $('view-setup').classList.remove('hidden'); $('view-login').classList.add('hidden'); }
+  }
+
+  $('form-setup').addEventListener('submit', function(e){
+    e.preventDefault();
+    hideMsg($('setup-err'));
+    var tok = $('setup-token').value.trim();
+    var owner = $('setup-owner').value.trim();
+    var repo = $('setup-repo').value.trim();
+    var pass = $('setup-pass').value, pass2 = $('setup-pass2').value;
+    if(!tok) return showMsg($('setup-err'),'Please paste the GitHub access token.');
+    if(!owner||!repo) return showMsg($('setup-err'),'Repo owner and name are required.');
+    if(pass.length<6) return showMsg($('setup-err'),'Passcode must be at least 6 characters.');
+    if(pass!==pass2) return showMsg($('setup-err'),'Passcodes do not match.');
+
+    busy('Verifying access…');
+    token = tok; cfg = {owner:owner, repo:repo, branch:'main'};
+    // verify token can read the repo
+    gh('GET', '/repos/'+owner+'/'+repo).then(function(){
+      return encryptToken(tok, pass);
+    }).then(function(blob){
+      localStorage.setItem(VAULT_KEY, JSON.stringify(blob));
+      localStorage.setItem(CFG_KEY, JSON.stringify(cfg));
+      done();
+      startApp();
+    }).catch(function(err){
+      done(); token=null;
+      var msg = err.status===404 ? 'Repo not found, or the token cannot access it. Check owner/name and the token permissions.'
+              : err.status===401 ? 'That token was rejected. Double-check you pasted it correctly.'
+              : 'Could not verify: '+err.message;
+      showMsg($('setup-err'), msg);
+    });
+  });
+
+  $('form-login').addEventListener('submit', function(e){
+    e.preventDefault();
+    hideMsg($('login-err'));
+    var pass = $('login-pass').value;
+    var blob = JSON.parse(localStorage.getItem(VAULT_KEY)||'null');
+    if(!blob){ showGate(); return; }
+    busy('Unlocking…');
+    decryptToken(blob, pass).then(function(tok){
+      token = tok;
+      done();
+      startApp();
+    }).catch(function(){
+      done();
+      showMsg($('login-err'), 'Wrong passcode. Please try again.');
+      $('login-pass').select();
+    });
+  });
+
+  $('link-reset').addEventListener('click', function(e){
+    e.preventDefault();
+    if(confirm('This clears the saved connection on THIS device only. The website is not affected. You will need the GitHub token to set it up again. Continue?')){
+      localStorage.removeItem(VAULT_KEY); localStorage.removeItem(CFG_KEY);
+      token=null; showGate();
+    }
+  });
+
+  $('btn-logout').addEventListener('click', function(){
+    if(dirty && !confirm('You have unsaved changes. Log out anyway?')) return;
+    token=null; data=null; dirty=false;
+    $('app').classList.add('hidden'); $('gate').classList.remove('hidden');
+    $('login-pass').value=''; showGate();
+  });
+
+  $('btn-save').addEventListener('click', doSave);
+  document.addEventListener('keydown', function(e){
+    if((e.metaKey||e.ctrlKey) && e.key==='s'){ e.preventDefault(); if(!$('btn-save').disabled) doSave(); }
+  });
+
+  // crypto availability check
+  if(!window.crypto || !crypto.subtle){
+    document.body.innerHTML = '<div class="gate"><div class="gate-card"><h1>Browser not supported</h1>'+
+      '<p class="sub">This editor needs a modern browser with a secure (https) connection. '+
+      'Please open it from the published https:// address.</p></div></div>';
+    return;
+  }
+
+  showGate();
+})();
+</script>
+</body>
+</html>

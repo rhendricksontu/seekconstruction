@@ -1,0 +1,333 @@
+{
+  "meta": {
+    "title": "Seek Construction LLC | Excavating, Site Work & Drainage | Edmond, OK",
+    "description": "Seek Construction LLC is an engineer-led, woman-owned earthwork and utility contractor serving Oklahoma and surrounding states. Excavating, site work, storm drainage, and underground utilities. Bonded, insured, TERO certified."
+  },
+  "hero": {
+    "eyebrowMain": "Oklahoma & Surrounding States",
+    "eyebrowSub": "Earthwork & Utility Contractor",
+    "h1": "We move the dirt that *everything* is built on.",
+    "lead": "Engineer-led excavating, site work, storm drainage, and underground utilities, delivered with GPS precision.",
+    "stats": [
+      {
+        "value": "80%",
+        "label": "Repeat Customers"
+      },
+      {
+        "value": "GPS",
+        "label": "On Every Job"
+      },
+      {
+        "value": "PE",
+        "label": "Engineer-Led Ops"
+      }
+    ],
+    "heroImage": "images/hero.jpg",
+    "cardCaption": "Site Work · Grading · Utilities"
+  },
+  "credentials": [
+    "Engineer-Led Operations",
+    "OKC Certified Utility Operator",
+    "GPS Machine Control",
+    "Safety Focused",
+    "Bonded & Insured",
+    "ABC Member",
+    "TERO Certified · Native Owned",
+    "Woman Owned"
+  ],
+  "services": {
+    "eyebrow": "What We Do",
+    "heading": "From Raw Ground to a Build-Ready Site",
+    "intro": "A complete earthwork and underground utility partner for commercial, public, tribal, and private construction across Oklahoma and surrounding states.",
+    "cards": [
+      {
+        "title": "Excavating & Earthwork",
+        "desc": "Mass excavation, cut & fill, hauling, and dirt work scaled from single pads to full subdivision and campus sites.",
+        "tags": [
+          "Mass Excavation",
+          "Cut & Fill",
+          "Hauling"
+        ]
+      },
+      {
+        "title": "Site Work & Grading",
+        "desc": "GPS-guided rough & finish grading, building pads, subgrade prep, and erosion control built to engineered tolerances.",
+        "tags": [
+          "GPS Grading",
+          "Building Pads",
+          "Subgrade"
+        ]
+      },
+      {
+        "title": "Storm & Drainage",
+        "desc": "Storm sewer, detention, culverts, and drainage systems engineered to handle Oklahoma's heaviest rains.",
+        "tags": [
+          "Storm Sewer",
+          "Detention",
+          "Culverts"
+        ]
+      },
+      {
+        "title": "Underground Utilities",
+        "desc": "Water, sanitary sewer, and underground utility installation as a City of OKC certified utility operator.",
+        "tags": [
+          "Water",
+          "Sanitary",
+          "Utilities"
+        ]
+      }
+    ]
+  },
+  "why": {
+    "eyebrow": "Why General Contractors Choose Seek",
+    "heading": "Credentials That De-Risk Your Project",
+    "intro": "We bring engineering discipline, certified operators, and modern technology to every yard of dirt we move.",
+    "cards": [
+      {
+        "title": "Engineer-Led Operations",
+        "desc": "Our work is directed by a licensed Professional Engineer, bringing design-grade planning and accountability to the field."
+      },
+      {
+        "title": "OKC Certified Utility Operator",
+        "desc": "Certified utility operator for the City of Oklahoma City, qualified to install and tie into municipal utility systems."
+      },
+      {
+        "title": "GPS on Every Job",
+        "desc": "GPS machine control and grade guidance on all jobs: fewer stakes, tighter tolerances, and faster, more accurate production."
+      },
+      {
+        "title": "Safety Focused",
+        "desc": "A safety-first culture protects our crews, your schedule, and everyone on site, every single day."
+      },
+      {
+        "title": "Bonded & Insured",
+        "desc": "Fully bonded and insured for the protection and peace of mind of every owner and general contractor we partner with."
+      },
+      {
+        "title": "ABC Member",
+        "desc": "Proud member of Associated Builders and Contractors, committed to merit-based, quality construction."
+      },
+      {
+        "title": "TERO Certified",
+        "desc": "TERO certified and Native American-owned, qualified for tribal employment-rights projects across Indian Country."
+      },
+      {
+        "title": "Woman Owned",
+        "desc": "A certified woman-owned business, bringing diverse-supplier eligibility and a different standard of care to the field."
+      }
+    ]
+  },
+  "projects": {
+    "eyebrow": "Completed Work",
+    "heading": "Trusted by the Region's Top Builders",
+    "intro": "A track record of earthwork and utility packages delivered for leading general contractors on public, commercial, tribal, and private projects.",
+    "items": [
+      {
+        "n": "Kickapoo Housing",
+        "gc": "Thompson Construction",
+        "t": "Tribal"
+      },
+      {
+        "n": "Edmond City Hall",
+        "gc": "Flintco",
+        "t": "Public"
+      },
+      {
+        "n": "SAG",
+        "gc": "Stansell",
+        "t": "Commercial"
+      },
+      {
+        "n": "Chandler Schools",
+        "gc": "Joe D Hall",
+        "t": "Public"
+      },
+      {
+        "n": "Deer Creek Schools",
+        "gc": "Willowbrook CMS",
+        "t": "Public"
+      },
+      {
+        "n": "Hafer Park, Edmond",
+        "gc": "ICGM",
+        "t": "Public"
+      },
+      {
+        "n": "Hinton Child Care",
+        "gc": "Thompson Construction",
+        "t": "Tribal"
+      },
+      {
+        "n": "Behavioral Health Facility",
+        "gc": "Manhattan",
+        "t": "Tribal"
+      },
+      {
+        "n": "OU Infrastructure",
+        "gc": "Thompson Construction",
+        "t": "Public"
+      },
+      {
+        "n": "Oakdale School",
+        "gc": "Willowbrook CMS",
+        "t": "Public"
+      },
+      {
+        "n": "Midwest City Schools",
+        "gc": "Willowbrook CMS",
+        "t": "Public"
+      },
+      {
+        "n": "ReMerge",
+        "gc": "Nabholz",
+        "t": "Public"
+      },
+      {
+        "n": "Dove Academy",
+        "gc": "ICGM",
+        "t": "Public"
+      },
+      {
+        "n": "Antlers",
+        "gc": "TTA Construction",
+        "t": "Tribal"
+      },
+      {
+        "n": "Lindsey",
+        "gc": "Joe D Hall",
+        "t": "Public"
+      },
+      {
+        "n": "Everest OU",
+        "gc": "Manhattan",
+        "t": "Public"
+      },
+      {
+        "n": "Brakes Plus, Norman",
+        "gc": "JC Curtis Construction",
+        "t": "Commercial"
+      },
+      {
+        "n": "Mt. St. Mary",
+        "gc": "AC Owen Construction",
+        "t": "Private"
+      },
+      {
+        "n": "HAKTO",
+        "gc": "Thompson Construction",
+        "t": "Tribal"
+      },
+      {
+        "n": "Brakes Plus, Ardmore",
+        "gc": "Devier Enterprises LLC",
+        "t": "Commercial"
+      },
+      {
+        "n": "Blue Beacon",
+        "gc": "TrailBlazer",
+        "t": "Commercial"
+      },
+      {
+        "n": "Wynnewood Public Schools",
+        "gc": "Mac Hill",
+        "t": "Public"
+      },
+      {
+        "n": "Fort Sill Credit Union",
+        "gc": "Geddes-Armstrong Construction",
+        "t": "Commercial"
+      },
+      {
+        "n": "HAKTO Round 3",
+        "gc": "Thompson Construction",
+        "t": "Tribal"
+      },
+      {
+        "n": "Shawnee YMCA",
+        "gc": "AC Owen Construction",
+        "t": "Public"
+      },
+      {
+        "n": "7 Brew, SW 104th",
+        "gc": "Prestige Construction Services LLC",
+        "t": "Commercial"
+      }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "In the Field",
+    "heading": "Project Gallery",
+    "intro": "Job site photos of grading, excavation, and utility work in progress.",
+    "items": [
+      {
+        "caption": "Excavation",
+        "image": "images/gallery-1.jpg"
+      },
+      {
+        "caption": "GPS Grading",
+        "image": "images/gallery-2.jpg"
+      },
+      {
+        "caption": "Storm & Drainage",
+        "image": "images/gallery-3.jpg"
+      },
+      {
+        "caption": "Utilities",
+        "image": "images/gallery-4.jpg"
+      },
+      {
+        "caption": "Equipment",
+        "image": "images/gallery-5.jpg"
+      },
+      {
+        "caption": "Finished Site",
+        "image": "images/gallery-6.jpg"
+      }
+    ]
+  },
+  "about": {
+    "eyebrow": "Who We Are",
+    "heading": "An engineer-led earthwork & utility company built on Oklahoma ground.",
+    "paragraphs": [
+      "Seek Construction LLC is a woman-owned, Native American-owned earthwork and underground utility contractor based in Edmond, Oklahoma. We partner with general contractors, developers, and public agencies to take sites from raw ground to build-ready.",
+      "With operations led by a licensed Professional Engineer, GPS machine control on every job, and certification as a City of OKC utility operator, we deliver work that is precise, safe, and built to last. We're bonded, insured, an ABC member, and TERO certified."
+    ],
+    "glanceTitle": "At a Glance",
+    "glance": [
+      {
+        "label": "Specialties",
+        "value": "Excavating · Site Work · Storm Drainage · Underground Utilities"
+      },
+      {
+        "label": "Service Area",
+        "value": "Statewide Oklahoma · & Surrounding States"
+      },
+      {
+        "label": "Site Type",
+        "value": "Public · Commercial · Tribal · Private"
+      },
+      {
+        "label": "Certifications",
+        "value": "TERO · OKC Utility Operator · Bonded · Insured · ABC Member"
+      },
+      {
+        "label": "Ownership",
+        "value": "Woman Owned · Native American Owned"
+      },
+      {
+        "label": "Technology",
+        "value": "GPS Machine Control · Grade Guidance on All Jobs"
+      }
+    ]
+  },
+  "contact": {
+    "eyebrow": "Get in Touch",
+    "heading": "Request a Bid",
+    "intro": "Have a site that needs moving, grading, or utilities? Send us your plans and we'll get you a number.",
+    "phone": "405-215-1096",
+    "email": "Estimator@SeekConstructionLLC.com",
+    "address": "6116 NW 178th St, Edmond, OK 73012",
+    "serviceArea": "Statewide Oklahoma · & Surrounding States",
+    "siteType": "Public · Commercial · Tribal · Private"
+  }
+}

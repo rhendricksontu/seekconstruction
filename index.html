@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seek Construction LLC | Excavating, Site Work &amp; Drainage | Edmond, OK</title>
+<meta name="description" content="Seek Construction LLC is an engineer-led, woman-owned earthwork and utility contractor serving Oklahoma and surrounding states. Excavating, site work, storm drainage, and underground utilities. Bonded, insured, TERO certified.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400&family=Archivo:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0C243C;
+    --navy-900:#0C243C;
+    --navy-800:#0C243C;
+    --navy-700:#16395a;
+    --steel:#1E6696;
+    --steel-300:#1E6696;
+    --steel-100:#1E6696;
+    --amber:#d8932b;
+    --amber-soft:#e7ad4d;
+    --sand:#f6f3ec;
+    --sand-2:#efe9dd;
+    --ink:#0C243C;
+    --muted:#5d6573;
+    --paper:#ffffff;
+    --line:#e2dccd;
+    --radius:4px;
+    --shadow:0 24px 60px -28px rgba(12,36,60,.45);
+    --shadow-sm:0 10px 30px -18px rgba(12,36,60,.4);
+    --maxw:1200px;
+    --serif:"Archivo",system-ui,sans-serif;
+    --brand:"Tinos","Times New Roman",Times,serif;
+    --sans:"Barlow",system-ui,sans-serif;
+    --cond:"Barlow Condensed",sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--sand);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .eyebrow{
+    font-family:var(--cond);
+    text-transform:uppercase;
+    letter-spacing:.22em;
+    font-weight:600;
+    font-size:.82rem;
+    color:var(--steel);
+    display:inline-flex;align-items:center;gap:.6rem;
+  }
+  .eyebrow::before{content:"";width:9px;height:9px;background:var(--amber);transform:rotate(45deg)}
+  .eyebrow::after{content:"";width:9px;height:9px;background:var(--amber);transform:rotate(45deg);margin-left:-.22em}
+  h1,h2,h3{font-family:var(--serif);font-weight:700;line-height:1.07;letter-spacing:-.02em;color:var(--navy)}
+  .bn{font-family:var(--brand);font-style:normal}
+  .sep{color:var(--amber)}
+  .btn{
+    display:inline-flex;align-items:center;gap:.55rem;
+    font-family:var(--cond);font-weight:600;text-transform:uppercase;letter-spacing:.09em;
+    font-size:1rem;padding:.95rem 1.7rem;border-radius:var(--radius);
+    transition:.25s ease;cursor:pointer;border:2px solid transparent;
+  }
+  .btn-amber{background:var(--amber);color:var(--navy-900);border-color:var(--amber)}
+  .btn-amber:hover{background:transparent;color:var(--amber);border-color:var(--amber)}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+  .btn-ghost:hover{border-color:var(--amber);color:var(--amber);background:transparent}
+  .btn-navy{background:var(--amber);color:var(--navy-900);border-color:var(--amber)}
+  .btn-navy:hover{background:transparent;color:var(--amber);border-color:var(--amber)}
+
+  /* ---------- Top utility bar ---------- */
+  .topbar{background:var(--navy-900);color:#cdd8ec;font-size:.85rem}
+  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:42px;flex-wrap:wrap}
+  .topbar a{display:inline-flex;align-items:center;gap:.4rem;font-weight:500}
+  .topbar a:hover{color:#fff}
+  .topbar .tb-right{display:flex;gap:1.4rem;align-items:center;font-family:var(--cond);letter-spacing:.06em;text-transform:uppercase;font-size:.8rem}
+  .topbar svg{width:14px;height:14px;flex:none;color:var(--amber)}
+  .tb-badge{color:var(--steel-300)}
+
+  /* ---------- Header ---------- */
+  header.site{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);transition:.3s}
+  header.site.scrolled{box-shadow:0 8px 30px -18px rgba(12,36,60,.4)}
+  .nav{display:flex;align-items:center;justify-content:space-between;min-height:84px;gap:1.5rem}
+  .brand{display:flex;align-items:flex-start;gap:.85rem}
+  .sclogo{display:block;width:auto;aspect-ratio:816/976}
+  .sclogo.on-dark{--c1:#fff;--c2:#fff}
+  .brand img,.brand .sclogo{height:calc(3.008rem + 4px);width:auto}
+  .brand .bw{display:flex;flex-direction:column;line-height:1}
+  .brand .bw b{font-family:var(--brand);font-style:normal;font-weight:700;font-size:1.28rem;color:var(--navy);letter-spacing:0;white-space:nowrap}
+  .brand .bw span{font-family:var(--brand);text-transform:uppercase;letter-spacing:.08em;font-size:.64rem;line-height:1.35;color:var(--steel);font-weight:400;margin-top:4px;text-align:center}
+  .brand .bw .sep{color:var(--amber)}
+  nav.links{display:flex;gap:1.5rem;align-items:center}
+  nav.links a{font-family:var(--cond);text-transform:uppercase;letter-spacing:.08em;font-weight:600;font-size:1rem;color:var(--navy);position:relative;padding:.3rem 0}
+  nav.links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--amber);transition:.25s}
+  nav.links a:hover::after{width:100%}
+  .nav .cta{display:flex;align-items:center;gap:1rem}
+  .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:6px}
+  .hamburger span{width:26px;height:2px;background:var(--navy);transition:.3s}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative;background:linear-gradient(160deg,var(--navy-900) 0%,var(--navy-700) 70%,var(--steel) 145%);color:#fff;overflow:hidden;isolation:isolate}
+  .hero .topo{position:absolute;inset:0;z-index:-2;opacity:.5}
+  .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
+    radial-gradient(1200px 600px at 78% -10%, rgba(30,102,150,.55), transparent 60%),
+    radial-gradient(900px 500px at 10% 110%, rgba(30,102,150,.2), transparent 55%),
+    linear-gradient(180deg, rgba(8,22,38,.5), rgba(8,22,38,.82));}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:3rem;align-items:center;padding-top:5.5rem;padding-bottom:5.5rem}
+  .hero .eyebrow{color:var(--amber-soft);flex-direction:column;align-items:flex-start;gap:.5rem}
+  .hero .eyebrow::before,.hero .eyebrow::after{display:none}
+  .hero .ey-main{display:inline-flex;align-items:center;gap:.6rem}
+  .hero .ey-main::before,.hero .ey-main::after{content:"";width:9px;height:9px;background:var(--amber);transform:rotate(45deg)}
+  .hero .ey-main::after{margin-left:-.22em}
+  .hero h1{color:#fff;font-size:clamp(2.6rem,5.6vw,4.5rem);font-weight:700;margin:1.1rem 0 1.2rem}
+  .hero h1 em{font-style:italic;color:var(--steel-300);font-weight:500}
+  .hero p.lead{font-size:1.18rem;color:#c7d2e6;max-width:42ch;font-weight:300}
+  .hero .actions{margin-top:2.1rem;display:flex;gap:1rem;flex-wrap:wrap}
+  .hero-stats{margin-top:2.8rem;display:flex;gap:2.2rem;flex-wrap:wrap}
+  .hero-stats .s{text-align:center}
+  .hero-stats .s b{font-family:var(--serif);font-size:2.3rem;color:var(--amber);display:block;line-height:1}
+  .hero-stats .s span{font-family:var(--cond);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;color:#9fb2d0}
+  .hero-card{
+    position:relative;border:1px solid rgba(255,255,255,.16);border-radius:6px;
+    background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+    padding:0;overflow:hidden;box-shadow:var(--shadow);
+  }
+  .hero-card .ph{position:relative;overflow:hidden;aspect-ratio:4/3;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;color:#9fb2d0;text-align:center;border-bottom:1px dashed rgba(255,255,255,.2);background:
+    repeating-linear-gradient(45deg,rgba(255,255,255,.025) 0 14px,transparent 14px 28px)}
+  .hero-card .ph img,.hero-card .ph video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+  .hero-card .ph svg{width:46px;height:46px;color:var(--steel-300)}
+  .hero-card .ph small{font-family:var(--cond);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem}
+  .hero-card .cap{padding:1rem 1.2rem;display:flex;align-items:center;gap:.7rem}
+  .hero-card .cap b{font-family:var(--cond);text-transform:uppercase;letter-spacing:.1em;font-size:.85rem;color:#fff}
+  .hero-card .cap svg{width:20px;height:20px;color:var(--amber)}
+
+  /* ---------- Credential strip ---------- */
+  .creds{background:linear-gradient(100deg,var(--steel) 0%,#155277 55%,var(--navy) 100%);color:#fff;border-top:3px solid var(--amber)}
+  .creds .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:.65rem 1.4rem;padding:1.15rem 28px}
+  .creds .c{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--cond);text-transform:uppercase;letter-spacing:.08em;font-weight:600;font-size:.92rem;color:#dbe5f5}
+  .creds .c svg{width:17px;height:17px;color:var(--amber);flex:none}
+  .creds .dot{width:5px;height:5px;border-radius:50%;background:var(--amber);align-self:center}
+
+  /* ---------- Section base ---------- */
+  section{padding:5.5rem 0}
+  .sec-head{max-width:720px;margin-bottom:3rem}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+  .sec-head.center .eyebrow{justify-content:center}
+  .sec-head h2{font-size:clamp(2rem,4vw,3rem);margin:1rem 0 .9rem}
+  .sec-head p{color:var(--muted);font-size:1.1rem;font-weight:300}
+
+  /* ---------- Services ---------- */
+  .services{background:var(--paper);position:relative}
+  .svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4rem}
+  .svc{
+    background:linear-gradient(155deg,#1c527c 0%,var(--navy) 100%);border:1px solid rgba(255,255,255,.1);border-radius:6px;padding:2rem 1.6rem 1.8rem;
+    position:relative;overflow:hidden;transition:.3s;
+  }
+  .svc::before{content:"";position:absolute;left:0;top:0;height:4px;width:100%;background:var(--steel);transform:scaleX(0);transform-origin:left;transition:.35s}
+  .svc:hover{transform:translateY(-6px);box-shadow:var(--shadow-sm);border-color:var(--steel)}
+  .svc:hover::before{transform:scaleX(1)}
+  .svc .ic{width:54px;height:54px;border-radius:8px;background:var(--steel);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem}
+  .svc .ic svg{width:28px;height:28px;color:var(--amber)}
+  .svc h3{font-size:1.4rem;margin-bottom:.55rem;color:var(--amber)}
+  .svc p{color:#fff;font-size:.98rem}
+  .svc ul{list-style:none;margin-top:1rem;display:flex;flex-wrap:wrap;gap:.4rem}
+  .svc li{font-family:var(--cond);text-transform:uppercase;letter-spacing:.05em;font-size:.74rem;color:#fff;background:var(--steel);padding:.2rem .55rem;border-radius:3px;font-weight:600}
+
+  /* ---------- Why Us ---------- */
+  .why{background:var(--sand-2);position:relative;overflow:hidden}
+  .why .topo2{position:absolute;right:-10%;top:-20%;width:60%;opacity:.5;z-index:0}
+  .why .wrap{position:relative;z-index:1}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem}
+  .why-card{background:#fff;border:1px solid var(--line);border-radius:6px;padding:1.6rem 1.4rem;transition:.3s;position:relative}
+  .why-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-sm)}
+  .why-card .badge{width:46px;height:46px;border-radius:50%;background:var(--steel-100);display:flex;align-items:center;justify-content:center;margin-bottom:1rem}
+  .why-card .badge svg{width:24px;height:24px;color:#fff}
+  .why-card h3{font-size:1.18rem;margin-bottom:.4rem;line-height:1.15;color:var(--amber)}
+  .why-card p{font-size:.92rem;color:var(--muted)}
+  .why-card .tag{position:absolute;top:1.2rem;right:1.2rem;font-family:var(--cond);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--amber);font-weight:700}
+
+  /* ---------- Projects ---------- */
+  .projects{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 58%,var(--steel) 130%);color:#fff;position:relative;overflow:hidden}
+  .projects .topo{position:absolute;inset:0;opacity:.32;z-index:0}
+  .projects .wrap{position:relative;z-index:1}
+  .projects .sec-head h2{color:#fff}
+  .projects .sec-head p{color:#a9b8d4}
+  .pstats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2.6rem}
+  .pstat{border:1px solid var(--amber);border-radius:6px;padding:1.3rem 1rem;text-align:center;background:rgba(255,255,255,.03)}
+  .pstat b{font-family:var(--serif);font-size:2.3rem;color:var(--amber-soft);display:block;line-height:1}
+  .pstat span{font-family:var(--cond);text-transform:uppercase;letter-spacing:.1em;font-size:.74rem;color:#b9c6de}
+  .filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.8rem}
+  .filter{font-family:var(--cond);text-transform:uppercase;letter-spacing:.08em;font-weight:600;font-size:.9rem;color:#cdd8ec;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);padding:.5rem 1.1rem;border-radius:40px;cursor:pointer;transition:.25s}
+  .filter:hover{border-color:var(--amber)}
+  .filter.active{background:var(--amber);color:var(--navy-900);border-color:var(--amber)}
+  .proj-grid{display:flex;flex-wrap:wrap;gap:1.1rem;justify-content:center}
+  .proj{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:6px;overflow:hidden;transition:.3s;display:flex;flex-direction:column;flex:1 1 calc((100% - 2.2rem)/3);max-width:calc((100% - 2.2rem)/3)}
+  .proj:hover{transform:translateY(-5px);background:rgba(255,255,255,.09);border-color:var(--steel-300)}
+  .proj .thumb{aspect-ratio:16/10;background:
+     repeating-linear-gradient(135deg,rgba(255,255,255,.03) 0 16px,transparent 16px 32px),
+     linear-gradient(160deg,var(--navy-800),var(--navy-700));
+     display:flex;align-items:center;justify-content:center;position:relative}
+  .proj .thumb svg{width:34px;height:34px;color:rgba(255,255,255,.28)}
+  .proj .thumb img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2}
+  .proj .ptag{position:absolute;top:.7rem;left:.7rem;font-family:var(--cond);text-transform:uppercase;letter-spacing:.08em;font-size:.7rem;font-weight:700;padding:.22rem .6rem;border-radius:3px}
+  .ptag.Public{background:var(--steel);color:#fff}
+  .ptag.Commercial{background:var(--amber);color:var(--navy-900)}
+  .ptag.Tribal{background:#7a5cc0;color:#fff}
+  .ptag.Private{background:#3f8f6e;color:#fff}
+  .proj .body{padding:1rem 1.1rem 1.15rem}
+  .proj h3{color:#fff;font-size:1.12rem;line-height:1.15;margin-bottom:.35rem}
+  .proj .gc{font-family:var(--cond);text-transform:uppercase;letter-spacing:.06em;font-size:.78rem;color:#9fb2d0}
+  .proj .gc b{color:#dbe5f5;font-weight:600}
+  .proj-note{margin-top:1.8rem;text-align:center;font-size:.92rem;color:#9fb2d0;font-style:italic}
+
+  /* ---------- Gallery ---------- */
+  .gallery{background:var(--paper)}
+  .gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+  .gal{position:relative;aspect-ratio:4/3;border:1px dashed var(--steel-300);border-radius:6px;background:var(--sand);overflow:hidden;color:var(--steel);transition:.3s}
+  .gal:hover{background:var(--sand-2);border-color:var(--steel)}
+  .gal>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;transition:.4s}
+  .gal:hover>img{transform:scale(1.04)}
+  .gal .gal-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.6rem;text-align:center;padding:.5rem}
+  .gal svg{width:40px;height:40px;opacity:.7}
+  .gal small{font-family:var(--cond);text-transform:uppercase;letter-spacing:.12em;font-size:.78rem;font-weight:600}
+  .gal span{font-size:.78rem;color:var(--muted)}
+  .gal-tip{margin-top:1.6rem;text-align:center;font-size:.95rem;color:var(--muted)}
+  .gal-tip b{color:var(--navy)}
+
+  /* ---------- About ---------- */
+  .about{background:var(--sand-2);color:var(--ink);position:relative;overflow:hidden}
+  .about .topo{position:absolute;inset:0;opacity:.5}
+  .about .wrap{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+  .about h2{color:var(--navy);font-size:clamp(2rem,4vw,2.9rem);margin:1rem 0 1.3rem}
+  .about p{color:var(--muted);margin-bottom:1.1rem;font-weight:300;font-size:1.05rem}
+  .about .signoff{display:flex;align-items:center;gap:1rem;margin-top:1.8rem;padding-top:1.6rem;border-top:1px solid var(--line)}
+  .about .signoff img,.about .signoff .sclogo{height:62px;width:auto}
+  .about .signoff div b{font-family:var(--brand);font-style:normal;font-weight:700;font-size:1.35rem;display:block;color:var(--navy)}
+  .about .signoff div span{font-family:var(--cond);text-transform:uppercase;letter-spacing:.1em;font-size:.78rem;color:var(--steel-300)}
+  .about-panel{border:1px solid var(--line);border-radius:8px;padding:2.2rem;background:#fff;box-shadow:var(--shadow-sm)}
+  .about-panel h3{color:var(--navy);font-size:1.3rem;margin-bottom:1.4rem}
+  .ap-row{display:flex;gap:.9rem;padding:.85rem 0;border-bottom:1px dashed var(--line)}
+  .ap-row:last-child{border-bottom:0}
+  .ap-row svg{width:22px;height:22px;color:var(--amber);flex:none;margin-top:2px}
+  .ap-row b{font-family:var(--cond);text-transform:uppercase;letter-spacing:.06em;font-size:.92rem;color:var(--navy);display:block}
+  .ap-row p{margin:0;font-size:.9rem;color:var(--muted)}
+
+  /* ---------- Contact ---------- */
+  .contact{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 58%,var(--steel) 130%)}
+  .contact .sec-head h2{color:#fff}
+  .contact .sec-head p{color:#a9b8d4}
+  .contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:3rem;align-items:stretch}
+  .contact .wrap>div:first-child{display:flex;flex-direction:column}
+  .contact .wrap>*{min-width:0}
+  .ci-card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:1.1rem 1.8rem;box-shadow:var(--shadow-sm)}
+  .ci-row:first-child{padding-top:0}
+  .ci-row:last-child{padding-bottom:0;border-bottom:0}
+  .ci-row{display:flex;gap:1rem;align-items:flex-start;padding:.6rem 0;border-bottom:1px solid var(--line)}
+  .ci-row:last-child{border-bottom:0}
+  .ci-row .ic{width:44px;height:44px;border-radius:8px;background:linear-gradient(150deg,var(--steel),var(--navy));display:flex;align-items:center;justify-content:center;flex:none}
+  .ci-row .ic svg{width:21px;height:21px;color:var(--amber)}
+  .ci-row .t small{font-family:var(--cond);text-transform:uppercase;letter-spacing:.12em;font-size:.72rem;color:var(--steel);font-weight:600}
+  .ci-row .t a,.ci-row .t b{display:block;font-size:1.08rem;color:var(--navy);font-weight:600;margin-top:1px;overflow-wrap:anywhere}
+  .ci-row .t a:hover{color:var(--steel)}
+  .area{margin-top:auto;background:#fff;border-radius:8px;padding:2.35rem 1.6rem;color:var(--muted);box-shadow:var(--shadow-sm)}
+  .area b{font-family:var(--cond);text-transform:uppercase;letter-spacing:.1em;color:var(--amber);font-size:.85rem;display:block;margin-bottom:.5rem}
+  .form{background:#fff;border:1px solid var(--line);border-radius:8px;padding:2.2rem;box-shadow:var(--shadow-sm)}
+  .form h3{font-size:1.6rem;margin-bottom:1.4rem}
+  .fg{margin-bottom:1.1rem}
+  .fg label{font-family:var(--cond);text-transform:uppercase;letter-spacing:.08em;font-size:.78rem;font-weight:600;color:var(--navy);display:block;margin-bottom:.4rem}
+  .fg input,.fg select,.fg textarea{width:100%;padding:.8rem .9rem;border:1px solid var(--line);border-radius:4px;font-family:var(--sans);font-size:1rem;background:var(--sand);transition:.2s}
+  .fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--steel);background:#fff;box-shadow:0 0 0 3px rgba(30,102,150,.12)}
+  .fg textarea{min-height:120px;resize:vertical}
+  .frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  .form .note{font-size:.82rem;color:var(--muted);margin-top:.8rem}
+
+  /* ---------- Footer ---------- */
+  footer.site{background:#fff;color:var(--muted);padding:3.5rem 0 1.8rem;border-top:1px solid var(--line)}
+  footer.site .top{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2.5rem;padding-bottom:2.5rem;border-bottom:1px solid var(--line);align-items:center}
+  footer .fcol{align-self:start}
+  footer .fbrand{display:flex;align-items:center;gap:.9rem;margin-bottom:1rem}
+  footer .fbrand img,footer .fbrand .sclogo{height:54px;width:auto}
+  footer .fbrand b{font-family:var(--brand);font-style:normal;font-weight:700;font-size:1.6rem;color:var(--navy)}
+  footer .fcol h4{font-family:var(--cond);text-transform:uppercase;letter-spacing:.12em;font-size:.85rem;color:var(--navy);margin-bottom:1rem}
+  footer .fcol a{display:block;padding:.32rem 0;color:var(--muted);font-size:.95rem;transition:.2s}
+  footer .fcol a:hover{color:var(--amber);padding-left:5px}
+  footer .fcreds{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.6rem}
+  footer .fcreds span{font-family:var(--cond);text-transform:uppercase;letter-spacing:.06em;font-size:.72rem;background:var(--sand-2);padding:.25rem .6rem;border-radius:3px;color:var(--navy)}
+  footer .bottom{padding-top:1.6rem;display:flex;justify-content:center;text-align:center;flex-wrap:wrap;gap:1rem;font-size:.82rem}
+  footer .bottom a:hover{color:var(--navy)}
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  .hero .eyebrow,.hero h1,.hero p.lead,.hero .actions,.hero-stats,.hero-card{opacity:0;transform:translateY(22px);animation:rise .8s forwards}
+  .hero h1{animation-delay:.1s}.hero p.lead{animation-delay:.2s}.hero .actions{animation-delay:.3s}.hero-stats{animation-delay:.4s}.hero-card{animation-delay:.25s}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  /* ---------- Responsive ---------- */
+  @media(max-width:1020px){
+    .svc-grid,.why-grid{grid-template-columns:repeat(2,1fr)}
+    .proj-grid,.gal-grid{grid-template-columns:repeat(2,1fr)}
+    .proj{flex-basis:calc((100% - 1.1rem)/2);max-width:calc((100% - 1.1rem)/2)}
+    .pstats{grid-template-columns:repeat(2,1fr)}
+    .hero .wrap{grid-template-columns:1fr;gap:2.2rem}
+    .hero .wrap>div:first-child{text-align:center}
+    .hero .eyebrow{display:flex;flex-direction:column;align-items:center}
+    .hero .actions{justify-content:center}
+    .hero-stats{justify-content:center}
+    .hero-card .cap{justify-content:center}
+    .about .wrap,.contact .wrap{grid-template-columns:1fr;gap:2.4rem}
+    .contact .wrap>div:first-child{display:block}
+    .area{margin-top:1.6rem}
+    footer.site .top{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:680px){
+    nav.links,.nav .cta .btn{display:none}
+    .hamburger{display:flex}
+    nav.links.open{display:flex;position:absolute;top:84px;left:0;right:0;flex-direction:column;background:#fff;padding:1.4rem 28px;gap:1rem;border-bottom:1px solid var(--line);box-shadow:var(--shadow-sm)}
+    .svc-grid,.why-grid,.proj-grid,.gal-grid{grid-template-columns:1fr}
+    .proj{flex-basis:100%;max-width:100%}
+    .pstats{grid-template-columns:repeat(2,1fr)}
+    .frow{grid-template-columns:1fr}
+    .topbar .tb-right .tb-badge{display:none}
+    section{padding:3.8rem 0}
+    .wrap{padding:0 20px}
+    footer.site .top{grid-template-columns:1fr}
+    .sec-head{text-align:center;margin-left:auto;margin-right:auto}
+    .sec-head .eyebrow{display:flex;flex-wrap:wrap;justify-content:center}
+    .filters{justify-content:center}
+    .about .wrap>div:first-child{text-align:center}
+    .about .eyebrow{display:flex;flex-wrap:wrap;justify-content:center}
+    .about .signoff{justify-content:center}
+    footer.site .top{text-align:center}
+    footer.site .brand{justify-content:center}
+    .creds .wrap{flex-direction:column;align-items:center;gap:.55rem}
+    .creds .dot{display:none}
+  }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><symbol id="sc-mark" viewBox="0 0 816 976"><path d="M131.9,128.5 L124.1,135.5 L117.2,141.9 L111.1,147.7 L105.8,152.8 L101.4,157.4 L97.8,161.4 L95.0,164.7 L93.1,167.4 L91.9,169.6 L91.0,171.7 L90.1,173.8 L89.4,175.8 L88.8,177.9 L88.4,180.0 L88.1,182.0 L88.0,184.0 L88.0,186.0 L87.7,188.2 L87.0,190.6 L86.0,193.2 L84.7,196.0 L83.1,199.0 L81.1,202.3 L78.8,205.7 L76.2,209.3 L74.0,212.6 L72.2,215.6 L70.8,218.3 L69.8,220.7 L69.2,222.8 L69.0,224.5 L69.2,225.9 L69.8,227.1 L70.3,228.7 L70.8,230.7 L71.1,233.2 L71.4,236.2 L71.5,239.7 L71.6,243.7 L71.6,248.1 L71.4,252.9 L71.5,257.7 L71.6,262.2 L71.9,266.6 L72.3,270.9 L72.9,275.0 L73.6,278.9 L74.5,282.7 L75.5,286.3 L76.5,289.6 L77.5,292.7 L78.5,295.4 L79.5,297.8 L80.5,300.0 L81.5,301.8 L82.5,303.4 L83.5,304.6 L84.4,306.0 L85.2,307.4 L85.8,308.8 L86.4,310.4 L86.9,312.0 L87.2,313.8 L87.4,315.6 L87.6,317.4 L88.0,319.6 L88.9,322.1 L90.1,324.8 L91.7,327.9 L93.6,331.3 L95.9,334.9 L98.5,338.9 L101.5,343.1 L104.4,347.0 L107.3,350.5 L110.0,353.5 L112.7,356.2 L115.3,358.5 L117.9,360.4 L120.3,361.9 L122.7,363.1 L125.0,364.3 L127.2,365.6 L129.2,367.0 L131.2,368.5 L133.2,370.1 L135.0,371.8 L136.7,373.6 L138.3,375.4 L141.5,377.6 L146.4,380.0 L152.8,382.7 L160.9,385.6 L170.6,388.8 L181.9,392.3 L194.8,396.0 L209.2,400.0 L222.5,403.5 L234.5,406.6 L245.2,409.2 L254.8,411.3 L263.0,413.0 L270.0,414.2 L275.8,414.9 L280.2,415.1 L284.4,415.5 L288.2,416.0 L291.7,416.6 L294.8,417.4 L297.6,418.2 L300.0,419.2 L302.1,420.4 L303.9,421.6 L305.4,423.0 L306.7,424.4 L307.8,425.9 L308.7,427.6 L309.3,429.3 L309.8,431.1 L310.0,433.0 L310.0,435.0 L309.7,437.1 L309.0,439.4 L307.9,441.8 L306.6,444.2 L304.8,446.9 L302.8,449.6 L300.4,452.5 L297.6,455.5 L295.2,458.3 L293.1,460.8 L291.2,463.2 L289.8,465.3 L288.6,467.2 L287.7,468.9 L287.1,470.4 L286.9,471.6 L286.3,473.2 L285.4,475.2 L284.2,477.4 L282.6,480.1 L280.7,483.0 L278.5,486.3 L275.9,490.0 L273.1,494.0 L270.5,497.7 L268.3,501.2 L266.5,504.4 L265.0,507.3 L263.8,510.0 L263.0,512.4 L262.6,514.6 L262.4,516.4 L262.1,518.4 L261.5,520.4 L260.8,522.5 L259.8,524.7 L258.5,527.0 L257.1,529.3 L255.4,531.8 L253.6,534.2 L251.8,537.2 L250.1,540.7 L248.6,544.7 L247.2,549.1 L245.8,554.0 L244.6,559.4 L243.5,565.3 L242.5,571.7 L241.4,577.5 L240.2,582.6 L238.9,587.2 L237.6,591.1 L236.1,594.4 L234.5,597.1 L232.9,599.2 L231.1,600.8 L229.1,601.8 L226.8,602.4 L224.3,602.6 L221.5,602.4 L218.4,601.7 L215.0,600.6 L211.4,599.0 L207.6,597.0 L203.9,595.0 L200.3,592.9 L197.0,590.8 L193.8,588.7 L190.8,586.5 L187.9,584.3 L185.2,582.1 L182.8,579.9 L180.5,577.7 L178.4,575.7 L176.6,573.8 L174.9,572.0 L173.5,570.3 L172.3,568.7 L171.4,567.2 L170.6,565.8 L170.1,564.5 L169.9,563.2 L169.9,562.0 L170.1,560.8 L170.6,559.6 L171.4,558.5 L172.4,557.5 L173.6,556.5 L174.7,555.5 L175.7,554.5 L176.4,553.6 L177.1,552.7 L177.5,551.7 L177.8,550.8 L178.0,549.9 L178.0,549.1 L177.9,548.2 L177.8,547.5 L177.5,546.7 L177.2,546.0 L176.8,545.4 L176.4,544.8 L175.8,544.2 L175.2,543.8 L174.4,543.3 L173.5,543.0 L172.4,542.8 L171.1,542.7 L169.7,542.7 L168.2,542.7 L166.4,542.9 L164.6,543.1 L162.8,543.1 L161.0,542.9 L159.3,542.4 L157.7,541.6 L156.1,540.6 L154.6,539.4 L153.2,537.9 L151.8,536.1 L150.6,534.2 L149.5,532.2 L148.5,530.1 L147.7,527.9 L147.0,525.5 L146.5,523.0 L146.1,520.4 L145.9,517.6 L145.5,515.0 L145.0,512.5 L144.4,510.0 L143.6,507.7 L142.8,505.5 L141.8,503.4 L140.6,501.4 L139.4,499.6 L138.3,496.9 L137.3,493.4 L136.6,489.2 L135.9,484.1 L135.5,478.2 L135.2,471.6 L135.0,464.1 L135.0,455.9 L134.9,448.4 L134.7,441.8 L134.4,435.9 L134.1,430.8 L133.6,426.6 L133.0,423.1 L132.4,420.4 L131.6,418.6 L130.9,416.9 L130.1,415.3 L129.4,414.0 L128.6,412.8 L127.9,411.8 L127.1,410.9 L126.4,410.2 L125.6,409.8 L124.2,409.3 L122.1,409.0 L119.2,408.8 L115.8,408.7 L111.6,408.7 L106.7,408.7 L101.1,408.9 L94.9,409.1 L89.3,409.5 L84.3,410.0 L80.0,410.7 L76.3,411.5 L73.2,412.5 L70.8,413.6 L69.1,414.8 L67.9,416.2 L66.9,417.8 L65.9,419.6 L64.9,421.6 L64.1,423.9 L63.2,426.3 L62.5,429.0 L61.8,431.9 L61.2,435.1 L60.8,439.5 L60.5,445.2 L60.5,452.2 L60.7,460.5 L61.1,470.1 L61.7,481.0 L62.5,493.2 L63.5,506.8 L64.3,519.5 L64.8,531.4 L65.1,542.6 L65.2,552.9 L65.0,562.5 L64.6,571.3 L63.9,579.4 L63.1,586.6 L62.4,593.3 L61.8,599.4 L61.5,605.0 L61.3,610.0 L61.3,614.4 L61.4,618.3 L61.8,621.6 L62.2,624.4 L62.6,627.1 L62.9,629.9 L63.0,632.7 L63.0,635.5 L62.9,638.4 L62.6,641.2 L62.2,644.1 L61.8,646.9 L61.4,649.8 L61.2,652.5 L61.2,655.3 L61.3,658.0 L61.6,660.6 L62.0,663.2 L62.6,665.8 L63.4,668.2 L64.5,670.6 L66.1,672.8 L68.1,674.8 L70.4,676.7 L73.2,678.4 L76.4,680.0 L80.0,681.4 L84.0,682.6 L88.0,683.6 L91.9,684.3 L95.7,684.8 L99.5,685.0 L103.3,684.9 L107.0,684.5 L110.7,683.9 L114.3,683.1 L117.6,682.1 L120.6,681.0 L123.2,679.9 L125.5,678.6 L127.5,677.3 L129.2,675.8 L130.5,674.3 L131.5,672.7 L132.4,670.9 L133.1,669.0 L133.8,667.0 L134.2,664.8 L134.6,662.5 L134.9,660.0 L135.0,657.4 L135.0,654.6 L135.2,652.1 L135.5,649.9 L135.9,648.0 L136.6,646.3 L137.3,644.9 L138.3,643.7 L139.4,642.8 L140.6,642.2 L142.2,642.0 L144.2,642.2 L146.5,642.8 L149.2,643.8 L152.3,645.2 L155.7,647.0 L159.4,649.2 L163.6,651.8 L167.4,654.2 L171.0,656.2 L174.2,658.0 L177.2,659.5 L180.0,660.7 L182.4,661.7 L184.6,662.3 L186.4,662.7 L188.6,663.3 L191.1,664.2 L193.9,665.3 L197.1,666.7 L200.5,668.3 L204.2,670.2 L208.3,672.3 L212.7,674.7 L216.6,677.0 L220.0,679.1 L222.9,681.2 L225.3,683.1 L227.3,684.9 L228.8,686.6 L229.8,688.2 L230.2,689.8 L230.7,691.7 L231.1,694.0 L231.4,696.7 L231.6,699.8 L231.8,703.3 L231.9,707.3 L232.0,711.6 L232.0,716.4 L232.1,720.7 L232.3,724.7 L232.7,728.3 L233.1,731.5 L233.6,734.3 L234.3,736.7 L235.1,738.7 L235.9,740.3 L236.8,742.6 L237.8,745.7 L238.8,749.4 L239.8,753.8 L240.8,759.0 L241.8,764.8 L242.9,771.4 L244.1,778.6 L245.4,785.8 L247.1,792.8 L248.9,799.8 L251.1,806.7 L253.4,813.5 L256.1,820.2 L258.9,826.8 L262.1,833.2 L265.3,839.6 L268.6,845.7 L272.1,851.6 L275.7,857.4 L279.3,862.9 L283.1,868.3 L287.0,873.5 L291.0,878.5 L294.5,883.0 L297.6,887.1 L300.3,890.7 L302.5,893.8 L304.2,896.5 L305.5,898.7 L306.3,900.4 L306.7,901.6 L307.3,902.8 L308.0,903.9 L309.0,904.9 L310.2,905.8 L311.6,906.7 L313.2,907.5 L315.0,908.2 L317.0,908.8 L319.4,909.9 L322.2,911.3 L325.4,913.2 L329.1,915.5 L333.1,918.3 L337.5,921.4 L342.4,925.0 L347.6,929.0 L353.2,932.9 L359.1,936.6 L365.2,940.2 L371.8,943.6 L378.6,946.9 L385.7,950.0 L393.1,953.1 L400.9,955.9 L408.6,958.5 L416.4,960.7 L424.2,962.5 L432.0,964.0 L439.9,965.2 L447.7,966.0 L455.6,966.4 L463.4,966.6 L471.0,966.7 L478.4,966.7 L485.5,966.8 L492.3,966.8 L498.8,966.7 L505.1,966.7 L511.1,966.6 L516.9,966.4 L522.3,966.2 L527.4,965.9 L532.2,965.5 L536.8,965.0 L540.9,964.4 L544.8,963.7 L548.4,962.9 L551.6,962.1 L554.9,961.0 L558.3,959.9 L561.7,958.6 L565.1,957.2 L568.6,955.6 L572.1,953.9 L575.7,952.0 L579.3,950.0 L582.7,948.2 L585.9,946.7 L588.8,945.4 L591.5,944.3 L593.9,943.5 L596.1,942.9 L598.1,942.6 L599.9,942.4 L601.8,942.1 L603.8,941.6 L605.9,940.8 L608.1,939.9 L610.5,938.8 L613.0,937.4 L615.6,935.9 L618.4,934.1 L621.5,931.9 L624.9,929.3 L628.6,926.2 L632.7,922.6 L637.0,918.6 L641.8,914.1 L646.8,909.2 L652.2,903.8 L656.9,899.0 L661.0,894.6 L664.5,890.8 L667.3,887.5 L669.5,884.7 L671.0,882.4 L671.9,880.6 L672.1,879.4 L672.6,878.0 L673.2,876.6 L674.1,875.2 L675.2,873.6 L676.4,872.0 L677.9,870.2 L679.6,868.4 L681.4,866.6 L683.1,864.8 L684.5,863.0 L685.7,861.3 L686.6,859.7 L687.3,858.1 L687.8,856.6 L688.0,855.2 L688.0,853.8 L688.2,852.2 L688.8,850.2 L689.5,848.0 L690.5,845.5 L691.8,842.7 L693.2,839.7 L695.0,836.3 L697.0,832.7 L698.9,828.9 L700.6,825.0 L702.2,820.9 L703.8,816.6 L705.1,812.2 L706.4,807.7 L707.5,802.9 L708.5,798.1 L709.4,793.3 L710.1,788.6 L710.7,784.1 L711.1,779.7 L711.4,775.3 L711.5,771.1 L711.6,767.0 L711.4,763.0 L711.2,759.2 L710.9,755.5 L710.5,752.0 L710.0,748.7 L709.4,745.6 L708.7,742.6 L707.9,739.8 L707.1,737.2 L705.8,734.7 L704.0,732.3 L701.9,730.0 L699.3,727.8 L696.4,725.7 L693.0,723.7 L689.1,721.9 L684.9,720.1 L680.8,718.7 L677.0,717.6 L673.3,716.8 L669.9,716.2 L666.7,716.1 L663.6,716.2 L660.8,716.6 L658.2,717.4 L655.6,718.2 L653.1,719.1 L650.7,720.1 L648.3,721.2 L646.0,722.3 L643.8,723.5 L641.6,724.8 L639.4,726.2 L637.5,727.7 L635.8,729.3 L634.3,731.1 L633.0,732.9 L631.9,734.9 L631.0,737.1 L630.2,739.3 L629.8,741.7 L629.3,744.3 L629.0,747.2 L628.8,750.4 L628.7,753.8 L628.7,757.5 L628.7,761.5 L628.9,765.8 L629.1,770.2 L629.2,774.3 L629.2,778.0 L629.1,781.2 L628.9,784.0 L628.5,786.4 L628.0,788.4 L627.4,789.9 L626.6,791.1 L626.0,792.3 L625.4,793.7 L624.8,795.3 L624.4,797.0 L624.0,798.8 L623.8,800.8 L623.6,802.9 L623.4,805.1 L622.8,808.0 L621.5,811.5 L619.8,815.5 L617.5,820.2 L614.6,825.5 L611.2,831.4 L607.2,837.9 L602.8,845.1 L598.6,851.3 L594.8,856.7 L591.4,861.3 L588.3,865.0 L585.6,867.8 L583.3,869.8 L581.3,870.9 L579.7,871.1 L577.5,871.7 L574.9,872.7 L571.7,873.9 L568.0,875.6 L563.8,877.5 L559.1,879.8 L553.9,882.5 L548.1,885.5 L542.1,888.1 L535.8,890.4 L529.2,892.2 L522.3,893.8 L515.2,894.9 L507.7,895.6 L500.0,896.0 L492.0,896.0 L484.4,895.7 L477.3,895.2 L470.5,894.4 L464.2,893.3 L458.3,892.0 L452.9,890.4 L447.8,888.6 L443.2,886.4 L438.9,884.6 L435.1,883.0 L431.6,881.8 L428.4,880.8 L425.7,880.0 L423.3,879.6 L421.3,879.4 L419.7,879.6 L417.8,879.4 L415.8,879.0 L413.5,878.2 L411.0,877.2 L408.3,876.0 L405.3,874.4 L402.2,872.6 L398.8,870.4 L395.3,867.9 L391.7,865.0 L388.0,861.6 L384.2,857.9 L380.3,853.7 L376.3,849.2 L372.1,844.2 L367.9,838.8 L363.9,833.3 L360.2,827.8 L356.8,822.1 L353.7,816.4 L350.8,810.5 L348.3,804.6 L346.0,798.6 L344.0,792.4 L342.1,786.9 L340.4,782.1 L338.8,777.8 L337.4,774.2 L336.1,771.2 L335.0,768.8 L333.9,767.1 L333.1,765.9 L332.2,764.4 L331.5,762.3 L330.8,759.8 L330.2,756.9 L329.6,753.5 L329.1,749.7 L328.7,745.4 L328.3,740.6 L327.9,736.3 L327.3,732.4 L326.7,729.0 L326.0,726.0 L325.3,723.4 L324.4,721.3 L323.5,719.6 L322.5,718.4 L321.6,716.8 L320.9,715.0 L320.2,712.8 L319.8,710.4 L319.4,707.7 L319.1,704.6 L319.0,701.3 L319.0,697.7 L319.1,694.4 L319.3,691.5 L319.7,689.0 L320.1,686.8 L320.6,685.0 L321.3,683.5 L322.1,682.4 L322.9,681.6 L323.9,681.0 L325.1,680.4 L326.3,679.9 L327.7,679.6 L329.2,679.3 L330.8,679.1 L332.6,679.0 L334.4,679.0 L336.2,678.9 L338.0,678.7 L339.7,678.3 L341.3,677.9 L342.9,677.4 L344.4,676.7 L345.8,675.9 L347.2,675.1 L348.6,674.3 L350.1,673.6 L351.7,673.1 L353.3,672.7 L355.0,672.3 L356.8,672.1 L358.6,672.0 L360.4,672.0 L363.0,671.6 L366.1,670.8 L369.9,669.6 L374.3,667.9 L379.4,665.9 L385.1,663.5 L391.5,660.6 L398.5,657.4 L404.8,654.4 L410.3,651.6 L415.2,649.1 L419.3,646.9 L422.7,644.9 L425.4,643.1 L427.4,641.6 L428.6,640.4 L430.0,639.3 L431.5,638.4 L433.1,637.8 L434.9,637.2 L436.8,636.9 L438.8,636.8 L440.9,636.9 L443.1,637.1 L445.0,637.1 L446.5,636.8 L447.7,636.3 L448.5,635.5 L449.0,634.4 L449.1,633.0 L448.8,631.4 L448.2,629.6 L447.9,627.7 L447.9,625.7 L448.2,623.8 L448.8,621.8 L449.8,619.7 L451.0,617.7 L452.6,615.6 L454.4,613.4 L456.5,610.7 L458.7,607.4 L461.1,603.4 L463.7,598.8 L466.4,593.7 L469.3,587.9 L472.4,581.5 L475.6,574.5 L478.5,566.7 L480.9,558.2 L482.8,548.9 L484.4,538.8 L485.5,528.0 L486.3,516.4 L486.6,504.1 L486.4,490.9 L486.4,479.4 L486.6,469.3 L486.8,460.8 L487.2,453.9 L487.7,448.5 L488.3,444.7 L489.1,442.4 L489.9,441.6 L491.5,441.1 L493.8,440.8 L496.7,440.7 L500.3,440.8 L504.6,441.2 L509.6,441.7 L515.3,442.5 L521.7,443.5 L528.0,444.9 L534.2,446.8 L540.4,449.1 L546.6,451.9 L552.6,455.1 L558.6,458.7 L564.6,462.8 L570.4,467.2 L575.8,471.6 L580.8,475.8 L585.2,479.8 L589.2,483.7 L592.8,487.4 L595.8,491.0 L598.4,494.4 L600.6,497.6 L602.4,500.7 L604.0,503.6 L605.2,506.2 L606.2,508.8 L607.0,511.1 L607.4,513.2 L607.6,515.1 L607.4,516.9 L607.5,518.6 L607.6,520.3 L607.9,522.0 L608.3,523.7 L608.9,525.4 L609.6,527.0 L610.5,528.7 L611.5,530.3 L612.4,532.9 L613.2,536.6 L613.8,541.2 L614.4,546.8 L614.9,553.4 L615.2,561.1 L615.4,569.7 L615.6,579.3 L616.2,588.2 L617.3,596.2 L618.8,603.5 L620.9,610.0 L623.5,615.7 L626.5,620.7 L630.0,624.8 L634.0,628.2 L638.0,631.0 L641.9,633.2 L645.7,634.9 L649.5,636.1 L653.3,636.6 L657.0,636.6 L660.7,636.1 L664.3,634.9 L667.6,633.8 L670.7,632.5 L673.4,631.3 L675.8,630.0 L678.0,628.6 L679.8,627.2 L681.4,625.8 L682.6,624.2 L683.7,619.2 L684.6,610.6 L685.3,598.4 L685.9,582.6 L686.3,563.3 L686.5,540.4 L686.6,514.0 L686.4,484.0 L686.0,457.6 L685.4,434.7 L684.5,415.5 L683.3,399.8 L681.8,387.7 L680.1,379.1 L678.1,374.2 L675.9,372.8 L673.6,371.6 L671.2,370.6 L668.8,369.7 L666.2,369.0 L663.7,368.5 L661.1,368.2 L658.4,368.0 L655.6,368.0 L653.0,368.2 L650.5,368.5 L648.1,369.0 L645.9,369.7 L643.8,370.6 L641.8,371.6 L639.9,372.8 L638.1,374.2 L636.5,375.8 L634.9,377.7 L633.4,379.9 L632.1,382.3 L630.8,385.0 L629.6,388.0 L628.5,391.2 L627.5,394.8 L626.5,397.9 L625.5,400.6 L624.4,402.9 L623.3,404.8 L622.3,406.4 L621.2,407.5 L620.1,408.3 L618.9,408.7 L617.8,409.0 L616.5,409.1 L615.2,409.2 L613.8,409.1 L612.4,408.9 L610.9,408.6 L609.3,408.2 L607.7,407.8 L606.1,407.1 L604.4,406.3 L602.8,405.3 L601.2,404.2 L599.6,402.9 L597.9,401.5 L596.3,399.9 L594.7,398.1 L592.3,396.2 L589.1,394.2 L585.1,391.9 L580.4,389.6 L574.8,387.0 L568.5,384.3 L561.4,381.5 L553.6,378.5 L545.1,375.9 L536.1,373.8 L526.5,372.0 L516.3,370.7 L505.5,369.8 L494.2,369.4 L482.2,369.3 L469.8,369.7 L458.1,369.7 L447.3,369.4 L437.4,368.7 L428.3,367.6 L420.1,366.2 L412.8,364.4 L406.3,362.2 L400.7,359.8 L395.5,357.6 L390.8,355.7 L386.4,354.2 L382.6,353.0 L379.1,352.2 L376.1,351.6 L373.6,351.4 L371.4,351.6 L369.4,351.5 L367.4,351.3 L365.5,351.0 L363.7,350.5 L362.0,349.8 L360.3,349.0 L358.8,348.1 L357.2,346.9 L355.5,346.0 L353.4,345.2 L351.1,344.5 L348.4,344.0 L345.5,343.7 L342.3,343.5 L338.9,343.4 L335.1,343.6 L331.6,343.5 L328.4,343.4 L325.5,343.1 L322.8,342.7 L320.4,342.1 L318.2,341.4 L316.3,340.5 L314.7,339.5 L312.2,338.5 L308.9,337.4 L304.8,336.2 L299.8,335.0 L293.9,333.8 L287.2,332.5 L279.7,331.2 L271.3,329.8 L263.4,328.4 L255.9,326.9 L248.9,325.4 L242.3,323.8 L236.2,322.2 L230.6,320.6 L225.4,318.9 L220.6,317.1 L216.3,315.2 L212.4,313.2 L209.0,311.1 L206.0,308.9 L203.4,306.5 L201.3,304.0 L199.6,301.4 L198.4,298.6 L197.1,296.2 L195.7,294.1 L194.3,292.3 L192.9,290.9 L191.4,289.8 L189.9,289.0 L188.3,288.6 L186.7,288.4 L185.1,288.1 L183.4,287.7 L181.8,287.0 L180.2,286.2 L178.6,285.2 L176.9,284.1 L175.3,282.8 L173.7,281.2 L172.2,279.4 L170.8,277.2 L169.6,274.6 L168.4,271.7 L167.4,268.4 L166.6,264.7 L165.8,260.7 L165.2,256.3 L164.8,252.2 L164.6,248.3 L164.6,244.7 L164.9,241.3 L165.3,238.2 L166.0,235.3 L166.9,232.7 L168.1,230.3 L169.0,228.0 L169.8,225.8 L170.4,223.6 L170.8,221.4 L171.1,219.4 L171.2,217.4 L171.1,215.4 L170.9,213.6 L171.1,211.4 L171.7,209.0 L172.8,206.3 L174.4,203.4 L176.4,200.2 L178.9,196.7 L181.8,193.0 L185.2,189.0 L188.9,185.1 L193.0,181.4 L197.5,177.8 L202.3,174.2 L207.5,170.9 L213.0,167.6 L218.9,164.5 L225.1,161.5 L231.4,158.9 L237.6,156.6 L243.8,154.8 L250.0,153.2 L256.1,152.1 L262.3,151.4 L268.4,151.0 L274.6,151.0 L280.5,151.2 L286.4,151.8 L292.1,152.5 L297.7,153.5 L303.1,154.8 L308.4,156.2 L313.5,158.0 L318.5,160.0 L323.2,162.0 L327.7,164.0 L331.8,166.0 L335.7,168.0 L339.3,170.0 L342.6,172.0 L345.6,174.0 L348.4,176.0 L351.0,178.1 L353.6,180.2 L356.2,182.4 L358.6,184.6 L361.0,186.9 L363.2,189.3 L365.4,191.8 L367.6,194.2 L369.7,197.0 L371.8,199.9 L373.8,203.1 L375.9,206.4 L378.0,210.0 L380.0,213.8 L382.0,217.9 L384.0,222.1 L385.7,226.2 L387.1,230.1 L388.1,233.8 L388.9,237.4 L389.3,240.8 L389.4,244.0 L389.2,247.1 L388.8,249.9 L388.4,253.5 L388.1,257.7 L388.0,262.5 L388.0,268.0 L388.1,274.2 L388.4,281.0 L388.8,288.4 L389.2,296.6 L390.1,303.9 L391.2,310.4 L392.7,316.1 L394.5,320.9 L396.7,325.0 L399.1,328.2 L401.9,330.7 L405.1,332.3 L408.3,333.7 L411.7,334.7 L415.2,335.5 L418.8,336.0 L422.6,336.2 L426.4,336.2 L430.4,335.8 L434.6,335.2 L438.3,334.5 L441.8,333.6 L444.9,332.7 L447.6,331.6 L450.0,330.4 L452.1,329.1 L453.8,327.8 L455.2,326.2 L456.5,324.4 L457.8,322.1 L458.9,319.4 L460.1,316.3 L461.1,312.9 L462.1,309.0 L463.1,304.8 L463.9,300.2 L464.6,295.1 L465.0,289.7 L465.2,283.8 L465.2,277.5 L465.0,270.7 L464.6,263.6 L463.9,256.0 L463.1,248.0 L462.4,239.8 L462.0,231.3 L461.8,222.6 L461.8,213.7 L462.0,204.5 L462.4,195.1 L463.1,185.4 L463.9,175.6 L464.7,166.4 L465.3,157.9 L465.7,150.1 L466.0,142.9 L466.2,136.5 L466.2,130.8 L466.1,125.7 L465.9,121.3 L465.4,117.2 L464.7,113.4 L463.7,109.9 L462.5,106.6 L461.1,103.7 L459.5,101.0 L457.6,98.6 L455.4,96.4 L453.2,94.5 L450.9,92.9 L448.4,91.5 L445.8,90.3 L443.2,89.3 L440.4,88.6 L437.5,88.1 L434.5,87.9 L431.7,87.7 L429.0,87.6 L426.5,87.6 L424.2,87.7 L422.1,87.8 L420.1,88.0 L418.3,88.3 L416.7,88.7 L415.1,89.3 L413.5,90.2 L411.9,91.4 L410.3,92.8 L408.8,94.5 L407.3,96.5 L405.8,98.8 L404.2,101.2 L402.8,103.5 L401.3,105.5 L399.9,107.2 L398.6,108.6 L397.2,109.8 L395.9,110.7 L394.6,111.3 L393.4,111.7 L391.6,111.7 L389.2,111.2 L386.2,110.4 L382.8,109.1 L378.7,107.5 L374.1,105.4 L368.9,102.9 L363.1,100.1 L357.2,97.4 L351.0,94.8 L344.7,92.5 L338.1,90.3 L331.3,88.3 L324.4,86.4 L317.2,84.8 L309.8,83.2 L302.6,82.0 L295.6,80.9 L288.7,80.1 L282.0,79.4 L275.5,79.0 L269.2,78.8 L263.0,78.9 L257.0,79.1 L250.5,79.7 L243.6,80.7 L236.3,81.9 L228.5,83.6 L220.2,85.5 L211.5,87.8 L202.3,90.5 L192.7,93.5 L183.3,97.0 L174.1,101.0 L165.2,105.5 L156.5,110.5 L148.1,116.0 L139.9,122.0 Z M402.9,486.8 L404.1,488.2 L405.0,489.6 L405.7,491.1 L406.1,492.7 L406.4,494.3 L406.4,496.0 L406.2,497.8 L405.8,499.6 L405.2,501.4 L404.7,503.5 L404.4,505.7 L404.2,508.0 L404.1,510.5 L404.2,513.2 L404.4,516.0 L404.8,518.9 L405.2,522.1 L405.4,525.2 L405.3,528.4 L404.9,531.5 L404.1,534.7 L403.1,537.9 L401.7,541.1 L400.0,544.4 L398.0,547.6 L395.8,550.9 L393.5,554.3 L391.1,557.7 L388.4,561.1 L385.7,564.6 L382.7,568.1 L379.6,571.7 L376.4,575.3 L373.2,578.6 L370.1,581.6 L367.1,584.2 L364.2,586.5 L361.3,588.5 L358.5,590.2 L355.8,591.5 L353.2,592.5 L350.7,593.4 L348.5,594.1 L346.3,594.7 L344.4,595.1 L342.6,595.4 L341.0,595.5 L339.6,595.6 L338.4,595.4 L337.2,595.0 L336.2,594.2 L335.2,593.0 L334.3,591.5 L333.5,589.7 L332.8,587.5 L332.2,584.9 L331.8,582.1 L331.5,579.1 L331.6,576.0 L331.9,572.9 L332.6,569.6 L333.5,566.3 L334.7,562.8 L336.1,559.3 L337.9,555.7 L339.4,552.3 L340.7,549.2 L341.8,546.3 L342.7,543.7 L343.3,541.3 L343.8,539.2 L344.0,537.3 L344.0,535.7 L344.4,533.6 L345.3,531.1 L346.6,528.1 L348.4,524.7 L350.6,520.8 L353.2,516.4 L356.2,511.6 L359.8,506.4 L363.2,501.7 L366.7,497.6 L370.2,494.0 L373.6,491.0 L377.0,488.6 L380.4,486.7 L383.8,485.4 L387.2,484.6 L390.3,484.1 L393.1,483.9 L395.6,484.0 L397.9,484.3 L399.8,484.9 L401.5,485.7 Z" fill-rule="evenodd" style="fill:var(--c1,#1E6696)"/><path d="M657.7,380.4 L655.3,380.6 L653.1,380.8 L650.9,381.3 L648.9,381.9 L647.1,382.6 L645.3,383.5 L643.7,384.6 L642.2,385.8 L640.8,387.2 L639.6,389.1 L638.6,391.4 L637.8,394.3 L637.2,397.7 L636.8,401.6 L636.5,405.9 L636.4,410.8 L636.6,416.2 L636.6,421.0 L636.4,425.2 L636.2,428.8 L635.8,431.9 L635.3,434.4 L634.7,436.3 L633.9,437.6 L633.1,438.4 L631.6,438.5 L629.6,437.9 L627.0,436.7 L623.8,434.8 L620.0,432.3 L615.7,429.1 L610.8,425.2 L605.2,420.8 L599.5,416.4 L593.5,412.3 L587.2,408.4 L580.8,404.6 L574.0,401.1 L567.0,397.7 L559.8,394.5 L552.2,391.5 L544.5,388.9 L536.5,386.6 L528.3,384.7 L519.9,383.1 L511.2,381.9 L502.3,381.0 L493.2,380.6 L483.8,380.4 L475.3,380.4 L467.5,380.5 L460.7,380.7 L454.6,381.0 L449.4,381.5 L445.0,382.0 L441.4,382.6 L438.6,383.4 L435.9,384.0 L433.3,384.5 L430.7,384.8 L428.1,385.0 L425.6,385.0 L423.1,384.9 L420.7,384.7 L418.3,384.3 L415.3,384.5 L411.6,385.2 L407.3,386.5 L402.4,388.3 L396.8,390.6 L390.6,393.5 L383.8,397.0 L376.2,401.0 L369.0,405.2 L362.0,409.6 L355.3,414.2 L348.9,419.0 L342.7,424.0 L336.8,429.3 L331.2,434.7 L325.8,440.3 L320.8,445.7 L316.0,451.0 L311.7,456.0 L307.6,460.8 L303.9,465.4 L300.5,469.8 L297.4,474.0 L294.6,478.0 L291.9,482.1 L289.3,486.2 L286.8,490.4 L284.2,494.6 L281.8,498.9 L279.4,503.3 L277.1,507.8 L274.9,512.2 L272.5,517.6 L270.0,523.9 L267.4,531.0 L264.6,539.0 L261.8,547.9 L258.8,557.6 L255.6,568.2 L252.4,579.8 L249.6,591.6 L247.3,603.9 L245.4,616.5 L244.1,629.5 L243.2,642.9 L242.7,656.6 L242.8,670.8 L243.2,685.2 L243.9,698.9 L244.8,711.8 L245.9,723.9 L247.1,735.1 L248.6,745.6 L250.2,755.2 L252.0,764.0 L254.0,772.0 L256.1,779.8 L258.3,787.3 L260.7,794.7 L263.1,801.8 L265.6,808.7 L268.3,815.4 L271.1,821.9 L273.9,828.1 L276.8,834.1 L279.6,839.7 L282.5,845.1 L285.3,850.2 L288.1,854.9 L290.9,859.4 L293.6,863.6 L296.4,867.4 L299.2,871.3 L302.2,875.0 L305.2,878.8 L308.3,882.5 L311.5,886.1 L314.8,889.7 L318.2,893.2 L321.8,896.8 L325.3,900.1 L328.8,903.4 L332.4,906.6 L336.1,909.7 L339.7,912.6 L343.4,915.5 L347.1,918.2 L350.9,920.8 L354.8,923.4 L358.8,925.9 L363.0,928.4 L367.3,930.8 L371.7,933.2 L376.3,935.6 L381.1,937.9 L385.9,940.1 L391.0,942.2 L396.1,944.2 L401.4,945.9 L406.8,947.6 L412.4,949.0 L418.1,950.3 L424.0,951.5 L430.0,952.5 L436.1,953.4 L442.3,954.1 L448.7,954.8 L455.1,955.2 L461.6,955.6 L468.3,955.9 L475.1,956.0 L481.9,956.0 L488.9,955.9 L495.8,955.6 L502.8,955.2 L509.9,954.8 L517.0,954.1 L524.2,953.4 L531.4,952.5 L538.6,951.5 L545.6,950.3 L552.3,949.0 L558.7,947.5 L564.8,945.8 L570.7,943.9 L576.2,941.9 L581.5,939.7 L586.5,937.3 L591.3,934.9 L595.9,932.5 L600.4,930.1 L604.6,927.7 L608.7,925.2 L612.6,922.7 L616.2,920.2 L619.8,917.8 L623.4,915.0 L627.1,911.9 L630.9,908.6 L634.8,904.9 L638.9,901.0 L643.0,896.8 L647.3,892.4 L651.7,887.6 L655.9,882.6 L660.0,877.2 L663.9,871.6 L667.6,865.7 L671.2,859.4 L674.7,852.9 L677.9,846.1 L681.1,838.9 L683.9,831.8 L686.4,824.7 L688.6,817.7 L690.4,810.6 L692.0,803.5 L693.2,796.5 L694.2,789.5 L694.8,782.5 L695.2,776.0 L695.3,769.9 L695.2,764.2 L694.8,759.0 L694.2,754.3 L693.3,750.0 L692.2,746.2 L690.8,742.8 L689.3,739.8 L687.6,737.0 L685.8,734.7 L683.8,732.6 L681.6,730.9 L679.3,729.5 L676.8,728.4 L674.2,727.6 L671.6,727.1 L669.0,726.8 L666.5,726.8 L664.0,727.0 L661.5,727.4 L659.1,728.0 L656.7,728.9 L654.3,730.1 L652.1,732.2 L649.9,735.5 L647.9,739.7 L646.1,745.0 L644.3,751.4 L642.7,758.8 L641.2,767.2 L639.8,776.8 L638.5,785.4 L637.2,793.2 L636.0,800.1 L634.8,806.2 L633.6,811.4 L632.5,815.7 L631.5,819.2 L630.5,821.8 L629.4,824.5 L628.1,827.2 L626.7,830.1 L625.1,832.9 L623.4,835.9 L621.5,838.9 L619.6,841.9 L617.4,845.1 L615.2,848.2 L612.7,851.4 L610.1,854.5 L607.4,857.7 L604.5,860.9 L601.4,864.1 L598.2,867.4 L594.8,870.6 L591.4,873.7 L587.9,876.7 L584.4,879.5 L580.8,882.2 L577.2,884.8 L573.6,887.2 L569.9,889.4 L566.1,891.6 L562.5,893.5 L558.9,895.4 L555.3,897.1 L551.9,898.7 L548.5,900.1 L545.3,901.4 L542.1,902.5 L538.9,903.5 L535.1,904.4 L530.5,905.1 L525.2,905.8 L519.2,906.2 L512.5,906.6 L505.1,906.9 L496.9,907.0 L488.1,907.0 L479.8,906.9 L472.2,906.6 L465.2,906.2 L458.8,905.6 L453.1,904.9 L447.9,904.0 L443.4,903.1 L439.6,901.9 L435.7,900.7 L431.8,899.3 L427.9,897.8 L424.1,896.2 L420.2,894.4 L416.3,892.6 L412.4,890.6 L408.6,888.4 L404.6,886.0 L400.5,883.3 L396.3,880.3 L392.0,877.0 L387.5,873.4 L383.0,869.5 L378.4,865.2 L373.6,860.8 L369.1,856.2 L364.7,851.5 L360.6,846.8 L356.7,842.0 L352.9,837.1 L349.4,832.1 L346.1,827.1 L342.9,821.9 L340.2,817.2 L337.8,812.9 L335.7,808.9 L334.0,805.3 L332.7,802.2 L331.7,799.4 L331.1,797.0 L330.9,795.0 L330.5,792.8 L329.9,790.5 L329.1,788.1 L328.2,785.4 L327.0,782.7 L325.8,779.7 L324.3,776.6 L322.7,773.4 L321.1,769.5 L319.6,765.1 L318.2,760.1 L316.8,754.4 L315.5,748.2 L314.2,741.4 L313.1,734.0 L311.9,726.0 L311.1,717.9 L310.4,709.6 L310.1,701.2 L309.9,692.6 L310.1,683.9 L310.4,675.0 L311.1,666.1 L311.9,656.9 L312.7,648.7 L313.2,641.3 L313.6,634.7 L313.9,629.0 L314.0,624.2 L313.9,620.2 L313.7,617.1 L313.3,614.9 L313.1,612.4 L312.9,609.6 L312.9,606.6 L313.1,603.4 L313.3,599.9 L313.7,596.1 L314.2,592.1 L314.8,587.9 L315.6,583.5 L316.6,578.9 L317.7,574.1 L319.0,569.2 L320.5,564.0 L322.2,558.8 L324.0,553.3 L326.0,547.7 L328.1,542.2 L330.4,536.8 L332.8,531.5 L335.2,526.3 L337.9,521.2 L340.6,516.2 L343.5,511.4 L346.5,506.6 L349.6,502.0 L352.7,497.5 L356.0,493.2 L359.3,489.0 L362.7,485.0 L366.1,481.1 L369.7,477.3 L373.3,473.7 L377.2,470.2 L381.4,466.8 L385.9,463.5 L390.6,460.3 L395.7,457.2 L401.0,454.2 L406.6,451.4 L412.4,448.6 L418.1,446.1 L423.4,443.9 L428.6,442.0 L433.4,440.3 L438.1,438.9 L442.4,437.7 L446.6,436.8 L450.4,436.2 L454.0,435.5 L457.2,434.9 L460.1,434.2 L462.7,433.5 L464.9,432.8 L466.8,432.1 L468.4,431.4 L469.6,430.6 L471.5,430.0 L473.9,429.5 L476.8,429.0 L480.4,428.7 L484.5,428.5 L489.3,428.4 L494.6,428.4 L500.4,428.6 L506.2,428.9 L511.9,429.6 L517.5,430.4 L523.0,431.6 L528.4,432.9 L533.7,434.6 L538.9,436.4 L544.1,438.6 L548.9,440.6 L553.3,442.7 L557.5,444.7 L561.3,446.6 L564.8,448.5 L567.9,450.3 L570.8,452.1 L573.2,453.9 L575.8,455.7 L578.2,457.7 L580.8,459.7 L583.2,461.8 L585.8,464.0 L588.2,466.3 L590.8,468.8 L593.2,471.2 L595.8,474.2 L598.4,477.6 L601.1,481.5 L603.9,485.8 L606.7,490.5 L609.6,495.8 L612.5,501.4 L615.5,507.6 L618.2,514.2 L620.5,521.4 L622.4,529.1 L624.1,537.4 L625.3,546.2 L626.3,555.5 L626.9,565.3 L627.1,575.7 L627.6,585.0 L628.4,593.2 L629.4,600.4 L630.6,606.6 L632.1,611.6 L633.9,615.6 L635.9,618.6 L638.1,620.4 L640.4,622.1 L642.6,623.5 L644.8,624.7 L647.0,625.6 L649.1,626.3 L651.3,626.8 L653.4,627.0 L655.6,627.0 L657.6,626.9 L659.4,626.7 L661.2,626.4 L662.8,626.1 L664.3,625.6 L665.7,625.0 L666.9,624.4 L668.1,623.6 L669.1,622.5 L670.2,621.1 L671.2,619.4 L672.1,617.3 L673.0,615.0 L673.8,612.2 L674.6,609.2 L675.4,605.8 L676.0,600.7 L676.5,593.8 L676.9,585.2 L677.1,574.8 L677.2,562.7 L677.2,548.8 L677.1,533.2 L676.9,515.8 L676.8,500.0 L676.8,485.7 L677.0,473.0 L677.3,461.8 L677.7,452.1 L678.3,444.0 L679.1,437.5 L679.9,432.5 L680.6,427.7 L681.1,423.2 L681.3,418.8 L681.4,414.7 L681.3,410.8 L680.9,407.1 L680.4,403.6 L679.6,400.4 L678.8,397.4 L677.9,394.7 L676.9,392.2 L675.8,390.0 L674.7,388.1 L673.5,386.5 L672.2,385.1 L670.8,383.9 L669.3,383.0 L667.7,382.2 L665.9,381.5 L664.1,381.0 L662.1,380.7 L659.9,380.5 Z" fill-rule="evenodd" style="fill:var(--c2,#0C243C)"/></symbol></svg>
+
+<!-- ============ HEADER ============ -->
+<header class="site" id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <svg class="sclogo" role="img" aria-label="Seek Construction LLC logo"><use href="#sc-mark"></use></svg>
+      <span class="bw"><b>Seek Construction LLC</b><span>Excavation <span class="sep">·</span> Site Work<br>Utilities <span class="sep">·</span> Land Clearing</span></span>
+    </a>
+    <nav class="links" id="navlinks">
+      <a href="#services">Services</a>
+      <a href="#why">Why Us</a>
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="cta">
+      <a href="#contact" class="btn btn-amber">Request a Bid</a>
+      <button class="hamburger" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding:0">
+  <svg class="topo" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <g fill="none" stroke="#1E6696" stroke-width="1.2">
+      <path d="M-50 120 C 250 60 450 200 720 150 C 980 100 1180 220 1500 160"/>
+      <path d="M-50 200 C 250 140 450 280 720 230 C 980 180 1180 300 1500 240"/>
+      <path d="M-50 290 C 250 230 450 370 720 320 C 980 270 1180 390 1500 330"/>
+      <path d="M-50 390 C 250 330 450 470 720 420 C 980 370 1180 490 1500 430"/>
+      <path d="M-50 500 C 250 440 450 580 720 530 C 980 480 1180 600 1500 540"/>
+      <path d="M-50 620 C 250 560 450 700 720 650 C 980 600 1180 720 1500 660"/>
+    </g>
+    <g fill="#e7ad4d"><circle cx="720" cy="150" r="4"/><circle cx="720" cy="320" r="4"/><circle cx="720" cy="530" r="4"/></g>
+  </svg>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow"><span class="ey-main" id="d-eymain"></span><span class="ey-sub" id="d-eysub"></span></span>
+      <h1 id="d-h1"></h1>
+      <p class="lead" id="d-lead"></p>
+      <div class="actions">
+        <a href="#contact" class="btn btn-amber">Request a Bid</a>
+        <a href="#projects" class="btn btn-ghost">View Our Work</a>
+      </div>
+      <div class="hero-stats" id="d-herostats"></div>
+    </div>
+    <div class="hero-card">
+      <div class="ph">
+        <!-- Drop a photo at images/hero.jpg to fill this. Later, swap this <img> for a <video autoplay muted loop playsinline src="images/hero.mp4"></video>. -->
+        <img id="d-heroimg" src="images/hero.jpg" alt="Seek Construction site work" onerror="this.remove()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg>
+        <small>Project Photo <span class="sep">·</span> Coming Soon</small>
+      </div>
+      <div class="cap">
+        <b id="d-herocap"></b>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CREDENTIAL STRIP ============ -->
+<div class="creds">
+  <div class="wrap" id="d-creds"></div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" id="d-svc-eyebrow"></span>
+      <h2 id="d-svc-heading"></h2>
+      <p id="d-svc-intro"></p>
+    </div>
+    <div class="svc-grid" id="d-svc"></div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section class="why" id="why">
+  <svg class="topo2" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#cdbf9e" stroke-width="1.4">
+    <circle cx="300" cy="300" r="60"/><circle cx="300" cy="300" r="120"/><circle cx="300" cy="300" r="190"/><circle cx="300" cy="300" r="270"/></g></svg>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" id="d-why-eyebrow"></span>
+      <h2 id="d-why-heading"></h2>
+      <p id="d-why-intro"></p>
+    </div>
+    <div class="why-grid" id="d-why"></div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="projects" id="projects">
+  <svg class="topo" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#1E6696" stroke-width="1.1">
+    <path d="M-50 150 C 300 90 500 230 760 180 C 1020 130 1200 250 1500 190"/>
+    <path d="M-50 260 C 300 200 500 340 760 290 C 1020 240 1200 360 1500 300"/>
+    <path d="M-50 380 C 300 320 500 460 760 410 C 1020 360 1200 480 1500 420"/>
+    <path d="M-50 520 C 300 460 500 600 760 550 C 1020 500 1200 620 1500 560"/></g></svg>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" id="d-proj-eyebrow"></span>
+      <h2 id="d-proj-heading"></h2>
+      <p id="d-proj-intro"></p>
+    </div>
+
+    <div class="pstats reveal">
+      <div class="pstat" data-type="Public"><b>50%</b><span>Public</span></div>
+      <div class="pstat" data-type="Commercial"><b>23%</b><span>Commercial</span></div>
+      <div class="pstat" data-type="Tribal"><b>23%</b><span>Tribal</span></div>
+      <div class="pstat" data-type="Private"><b>4%</b><span>Private</span></div>
+    </div>
+
+    <div class="filters reveal" id="filters">
+      <button class="filter active" data-f="all">All Projects</button>
+      <button class="filter" data-f="Public">Public</button>
+      <button class="filter" data-f="Commercial">Commercial</button>
+      <button class="filter" data-f="Tribal">Tribal</button>
+      <button class="filter" data-f="Private">Private</button>
+    </div>
+
+    <div class="proj-grid" id="projgrid"></div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow" id="d-gal-eyebrow"></span>
+      <h2 id="d-gal-heading"></h2>
+      <p id="d-gal-intro"></p>
+    </div>
+    <!-- Drop photos into the images/ folder using the filenames set in the admin tool. -->
+    <div class="gal-grid" id="d-gal"></div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="about">
+  <svg class="topo" viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g fill="none" stroke="#cdbf9e" stroke-width="1.1">
+    <path d="M-50 120 C 300 70 500 200 760 150 C 1020 100 1200 220 1500 160"/>
+    <path d="M-50 250 C 300 200 500 330 760 280 C 1020 230 1200 350 1500 290"/>
+    <path d="M-50 400 C 300 350 500 480 760 430 C 1020 380 1200 500 1500 440"/></g></svg>
+  <div class="wrap">
+    <div>
+      <span class="eyebrow" id="d-about-eyebrow"></span>
+      <h2 id="d-about-heading"></h2>
+      <div id="d-about-paras"></div>
+    </div>
+    <div class="about-panel reveal">
+      <h3 id="d-glance-title">At a Glance</h3>
+      <div id="d-glance"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <div class="sec-head reveal" style="margin-bottom:1.6rem">
+        <span class="eyebrow" id="d-contact-eyebrow"></span>
+        <h2 id="d-contact-heading"></h2>
+        <p id="d-contact-intro"></p>
+      </div>
+      <div class="ci-card reveal">
+        <div class="ci-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.9a16 16 0 006 6l1.4-1.4a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z"/></svg></div><div class="t"><small>Call or Text</small><a id="d-phone" href="#"></a></div></div>
+        <div class="ci-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><div class="t"><small>Email</small><a id="d-email" href="#"></a></div></div>
+        <div class="ci-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.3-7-11a7 7 0 0114 0c0 4.7-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div><div class="t"><small>Office</small><a id="d-office" href="#" target="_blank" rel="noopener"></a></div></div>
+      </div>
+      <div class="area" id="d-area"></div>
+    </div>
+
+    <div class="form reveal">
+      <h3>Tell us about your project</h3>
+      <div class="frow">
+        <div class="fg"><label>Name</label><input type="text" placeholder="Your name"></div>
+        <div class="fg"><label>Company</label><input type="text" placeholder="GC / Developer"></div>
+      </div>
+      <div class="frow">
+        <div class="fg"><label>Email</label><input type="email" placeholder="you@email.com"></div>
+        <div class="fg"><label>Phone</label><input type="tel" placeholder="(405) 000-0000"></div>
+      </div>
+      <div class="fg"><label>Project Type</label>
+        <select><option>Excavating &amp; Earthwork</option><option>Site Work &amp; Grading</option><option>Storm &amp; Drainage</option><option>Underground Utilities</option><option>Multiple / Full Site Package</option></select>
+      </div>
+      <div class="fg"><label>Project Details</label><textarea placeholder="Location, scope, timeline, and any plans you'd like to share."></textarea></div>
+      <a id="d-form-send" href="#" class="btn btn-navy" style="width:100%;justify-content:center">Send Bid Request</a>
+      <p class="note" style="text-align:center">Prefer to talk it through? Call or text <a id="d-note-phone" href="#" style="color:var(--steel);font-weight:600"></a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="top">
+      <div>
+        <a class="brand" href="#top">
+          <svg class="sclogo" role="img" aria-label="Seek Construction LLC logo"><use href="#sc-mark"></use></svg>
+          <span class="bw"><b>Seek Construction LLC</b><span>Excavation <span class="sep">·</span> Site Work<br>Utilities <span class="sep">·</span> Land Clearing</span></span>
+        </a>
+      </div>
+      <div class="fcol">
+        <h4>Explore</h4>
+        <a href="#services">Services</a>
+        <a href="#why">Why Choose Us</a>
+        <a href="#projects">Completed Projects</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#about">About</a>
+      </div>
+      <div class="fcol">
+        <h4>Contact</h4>
+        <a id="d-foot-phone" href="#"></a>
+        <a id="d-foot-email" href="#"></a>
+        <a id="d-foot-office" href="#" target="_blank" rel="noopener"></a>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© <span id="yr"></span> <span class="bn">Seek Construction LLC</span>. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================================================================
+     EDITABLE SITE CONTENT
+     This block is managed by the admin tool (admin.html).
+     You can edit it by hand too, but the admin tool is easier and safer.
+     ================================================================ -->
+<script id="seek-data" type="application/json">
+{
+  "meta": {
+    "title": "Seek Construction LLC | Excavating, Site Work & Drainage | Edmond, OK",
+    "description": "Seek Construction LLC is an engineer-led, woman-owned earthwork and utility contractor serving Oklahoma and surrounding states. Excavating, site work, storm drainage, and underground utilities. Bonded, insured, TERO certified."
+  },
+  "hero": {
+    "eyebrowMain": "Oklahoma & Surrounding States",
+    "eyebrowSub": "Earthwork & Utility Contractor",
+    "h1": "We move the dirt that *everything* is built on.",
+    "lead": "Engineer-led excavating, site work, storm drainage, and underground utilities, delivered with GPS precision.",
+    "stats": [
+      {"value": "80%", "label": "Repeat Customers"},
+      {"value": "GPS", "label": "On Every Job"},
+      {"value": "PE", "label": "Engineer-Led Ops"}
+    ],
+    "heroImage": "images/hero.jpg",
+    "cardCaption": "Site Work · Grading · Utilities"
+  },
+  "credentials": [
+    "Engineer-Led Operations",
+    "OKC Certified Utility Operator",
+    "GPS Machine Control",
+    "Safety Focused",
+    "Bonded & Insured",
+    "ABC Member",
+    "TERO Certified · Native Owned",
+    "Woman Owned"
+  ],
+  "services": {
+    "eyebrow": "What We Do",
+    "heading": "From Raw Ground to a Build-Ready Site",
+    "intro": "A complete earthwork and underground utility partner for commercial, public, tribal, and private construction across Oklahoma and surrounding states.",
+    "cards": [
+      {"title": "Excavating & Earthwork", "desc": "Mass excavation, cut & fill, hauling, and dirt work scaled from single pads to full subdivision and campus sites.", "tags": ["Mass Excavation", "Cut & Fill", "Hauling"]},
+      {"title": "Site Work & Grading", "desc": "GPS-guided rough & finish grading, building pads, subgrade prep, and erosion control built to engineered tolerances.", "tags": ["GPS Grading", "Building Pads", "Subgrade"]},
+      {"title": "Storm & Drainage", "desc": "Storm sewer, detention, culverts, and drainage systems engineered to handle Oklahoma's heaviest rains.", "tags": ["Storm Sewer", "Detention", "Culverts"]},
+      {"title": "Underground Utilities", "desc": "Water, sanitary sewer, and underground utility installation as a City of OKC certified utility operator.", "tags": ["Water", "Sanitary", "Utilities"]}
+    ]
+  },
+  "why": {
+    "eyebrow": "Why General Contractors Choose Seek",
+    "heading": "Credentials That De-Risk Your Project",
+    "intro": "We bring engineering discipline, certified operators, and modern technology to every yard of dirt we move.",
+    "cards": [
+      {"title": "Engineer-Led Operations", "desc": "Our work is directed by a licensed Professional Engineer, bringing design-grade planning and accountability to the field."},
+      {"title": "OKC Certified Utility Operator", "desc": "Certified utility operator for the City of Oklahoma City, qualified to install and tie into municipal utility systems."},
+      {"title": "GPS on Every Job", "desc": "GPS machine control and grade guidance on all jobs: fewer stakes, tighter tolerances, and faster, more accurate production."},
+      {"title": "Safety Focused", "desc": "A safety-first culture protects our crews, your schedule, and everyone on site, every single day."},
+      {"title": "Bonded & Insured", "desc": "Fully bonded and insured for the protection and peace of mind of every owner and general contractor we partner with."},
+      {"title": "ABC Member", "desc": "Proud member of Associated Builders and Contractors, committed to merit-based, quality construction."},
+      {"title": "TERO Certified", "desc": "TERO certified and Native American-owned, qualified for tribal employment-rights projects across Indian Country."},
+      {"title": "Woman Owned", "desc": "A certified woman-owned business, bringing diverse-supplier eligibility and a different standard of care to the field."}
+    ]
+  },
+  "projects": {
+    "eyebrow": "Completed Work",
+    "heading": "Trusted by the Region's Top Builders",
+    "intro": "A track record of earthwork and utility packages delivered for leading general contractors on public, commercial, tribal, and private projects.",
+    "items": [
+      {"n": "Kickapoo Housing", "gc": "Thompson Construction", "t": "Tribal"},
+      {"n": "Edmond City Hall", "gc": "Flintco", "t": "Public"},
+      {"n": "SAG", "gc": "Stansell", "t": "Commercial"},
+      {"n": "Chandler Schools", "gc": "Joe D Hall", "t": "Public"},
+      {"n": "Deer Creek Schools", "gc": "Willowbrook CMS", "t": "Public"},
+      {"n": "Hafer Park, Edmond", "gc": "ICGM", "t": "Public"},
+      {"n": "Hinton Child Care", "gc": "Thompson Construction", "t": "Tribal"},
+      {"n": "Behavioral Health Facility", "gc": "Manhattan", "t": "Tribal"},
+      {"n": "OU Infrastructure", "gc": "Thompson Construction", "t": "Public"},
+      {"n": "Oakdale School", "gc": "Willowbrook CMS", "t": "Public"},
+      {"n": "Midwest City Schools", "gc": "Willowbrook CMS", "t": "Public"},
+      {"n": "ReMerge", "gc": "Nabholz", "t": "Public"},
+      {"n": "Dove Academy", "gc": "ICGM", "t": "Public"},
+      {"n": "Antlers", "gc": "TTA Construction", "t": "Tribal"},
+      {"n": "Lindsey", "gc": "Joe D Hall", "t": "Public"},
+      {"n": "Everest OU", "gc": "Manhattan", "t": "Public"},
+      {"n": "Brakes Plus, Norman", "gc": "JC Curtis Construction", "t": "Commercial"},
+      {"n": "Mt. St. Mary", "gc": "AC Owen Construction", "t": "Private"},
+      {"n": "HAKTO", "gc": "Thompson Construction", "t": "Tribal"},
+      {"n": "Brakes Plus, Ardmore", "gc": "Devier Enterprises LLC", "t": "Commercial"},
+      {"n": "Blue Beacon", "gc": "TrailBlazer", "t": "Commercial"},
+      {"n": "Wynnewood Public Schools", "gc": "Mac Hill", "t": "Public"},
+      {"n": "Fort Sill Credit Union", "gc": "Geddes-Armstrong Construction", "t": "Commercial"},
+      {"n": "HAKTO Round 3", "gc": "Thompson Construction", "t": "Tribal"},
+      {"n": "Shawnee YMCA", "gc": "AC Owen Construction", "t": "Public"},
+      {"n": "7 Brew, SW 104th", "gc": "Prestige Construction Services LLC", "t": "Commercial"}
+    ]
+  },
+  "gallery": {
+    "eyebrow": "In the Field",
+    "heading": "Project Gallery",
+    "intro": "Job site photos of grading, excavation, and utility work in progress.",
+    "items": [
+      {"caption": "Excavation", "image": "images/gallery-1.jpg"},
+      {"caption": "GPS Grading", "image": "images/gallery-2.jpg"},
+      {"caption": "Storm & Drainage", "image": "images/gallery-3.jpg"},
+      {"caption": "Utilities", "image": "images/gallery-4.jpg"},
+      {"caption": "Equipment", "image": "images/gallery-5.jpg"},
+      {"caption": "Finished Site", "image": "images/gallery-6.jpg"}
+    ]
+  },
+  "about": {
+    "eyebrow": "Who We Are",
+    "heading": "An engineer-led earthwork & utility company built on Oklahoma ground.",
+    "paragraphs": [
+      "Seek Construction LLC is a woman-owned, Native American-owned earthwork and underground utility contractor based in Edmond, Oklahoma. We partner with general contractors, developers, and public agencies to take sites from raw ground to build-ready.",
+      "With operations led by a licensed Professional Engineer, GPS machine control on every job, and certification as a City of OKC utility operator, we deliver work that is precise, safe, and built to last. We're bonded, insured, an ABC member, and TERO certified."
+    ],
+    "glanceTitle": "At a Glance",
+    "glance": [
+      {"label": "Specialties", "value": "Excavating · Site Work · Storm Drainage · Underground Utilities"},
+      {"label": "Service Area", "value": "Statewide Oklahoma · & Surrounding States"},
+      {"label": "Site Type", "value": "Public · Commercial · Tribal · Private"},
+      {"label": "Certifications", "value": "TERO · OKC Utility Operator · Bonded · Insured · ABC Member"},
+      {"label": "Ownership", "value": "Woman Owned · Native American Owned"},
+      {"label": "Technology", "value": "GPS Machine Control · Grade Guidance on All Jobs"}
+    ]
+  },
+  "contact": {
+    "eyebrow": "Get in Touch",
+    "heading": "Request a Bid",
+    "intro": "Have a site that needs moving, grading, or utilities? Send us your plans and we'll get you a number.",
+    "phone": "405-215-1096",
+    "email": "Estimator@SeekConstructionLLC.com",
+    "address": "6116 NW 178th St, Edmond, OK 73012",
+    "serviceArea": "Statewide Oklahoma · & Surrounding States",
+    "siteType": "Public · Commercial · Tribal · Private"
+  }
+}
+</script>
+
+<script>
+(function(){
+  function boot(DATA){
+
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  function sep(s){ return esc(s).replace(/ · /g,' <span class="sep">·</span> '); }
+  function em(s){ return sep(s).replace(/\*([^*]+)\*/g,'<em>$1</em>'); }
+  function brand(s){ return sep(s).replace(/Seek Construction LLC/g,'<span class="bn">Seek Construction LLC</span>'); }
+  function digits(s){ return String(s||'').replace(/\D/g,''); }
+  function telHref(p){ var d=digits(p); if(d.length===10) d='1'+d; return 'tel:'+d; }
+  function mapsHref(a){ return 'https://maps.google.com/?q='+encodeURIComponent(a||''); }
+  function el(id){ return document.getElementById(id); }
+  function setHTML(id,html){ var e=el(id); if(e) e.innerHTML=html; }
+  function setText(id,t){ var e=el(id); if(e) e.textContent=(t==null?'':t); }
+  function setAttr(id,name,val){ var e=el(id); if(e) e.setAttribute(name,val); }
+
+  // ---------- HERO ----------
+  var h = DATA.hero||{};
+  setText('d-eymain', h.eyebrowMain);
+  setText('d-eysub', h.eyebrowSub);
+  setHTML('d-h1', em(h.h1));
+  setHTML('d-lead', sep(h.lead));
+  setHTML('d-herostats', (h.stats||[]).map(function(s){
+    return '<div class="s"><b>'+esc(s.value)+'</b><span>'+esc(s.label)+'</span></div>';
+  }).join(''));
+  if(h.heroImage) setAttr('d-heroimg','src', h.heroImage);
+  setHTML('d-herocap', sep(h.cardCaption));
+
+  // ---------- CREDENTIAL STRIP ----------
+  setHTML('d-creds', (DATA.credentials||[]).map(function(c){
+    return '<span class="c">'+sep(c)+'</span>';
+  }).join('<span class="dot"></span>'));
+
+  // ---------- SERVICES ----------
+  var sv = DATA.services||{};
+  setText('d-svc-eyebrow', sv.eyebrow); setText('d-svc-heading', sv.heading); setHTML('d-svc-intro', sep(sv.intro));
+  setHTML('d-svc', (sv.cards||[]).map(function(c){
+    var tags=(c.tags||[]).map(function(t){return '<li>'+esc(t)+'</li>';}).join('');
+    return '<div class="svc reveal"><h3>'+esc(c.title)+'</h3><p>'+sep(c.desc)+'</p><ul>'+tags+'</ul></div>';
+  }).join(''));
+
+  // ---------- WHY US ----------
+  var wy = DATA.why||{};
+  setText('d-why-eyebrow', wy.eyebrow); setText('d-why-heading', wy.heading); setHTML('d-why-intro', sep(wy.intro));
+  setHTML('d-why', (wy.cards||[]).map(function(c){
+    return '<div class="why-card reveal"><h3>'+esc(c.title)+'</h3><p>'+sep(c.desc)+'</p></div>';
+  }).join(''));
+
+  // ---------- PROJECTS ----------
+  var pr = DATA.projects||{};
+  setText('d-proj-eyebrow', pr.eyebrow); setText('d-proj-heading', pr.heading); setHTML('d-proj-intro', sep(pr.intro));
+  var projects = pr.items||[];
+  var camera = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg>';
+  var grid = el('projgrid');
+  function renderProjects(filter){
+    grid.innerHTML = projects.filter(function(p){return filter==='all'||p.t===filter;}).map(function(p){
+      var img = p.img ? '<img src="images/projects/'+esc(p.img)+'" alt="'+esc(p.n)+'" loading="lazy" onerror="this.remove()">' : '';
+      return '<div class="proj"><div class="thumb"><span class="ptag '+esc(p.t)+'">'+esc(p.t)+'</span>'+img+camera+'</div>'+
+             '<div class="body"><h3>'+esc(p.n)+'</h3><div class="gc">GC <span class="sep">·</span> <b>'+esc(p.gc)+'</b></div></div></div>';
+    }).join('');
+  }
+  renderProjects('all');
+  // Auto-calculate the "Completed Work" percentages from the projects list.
+  var total = projects.length;
+  document.querySelectorAll('.pstat[data-type]').forEach(function(elm){
+    var count = projects.filter(function(p){return p.t===elm.dataset.type;}).length;
+    elm.querySelector('b').textContent = total ? Math.round(count/total*100)+'%' : '0%';
+  });
+  document.querySelectorAll('.filter').forEach(function(b){ b.addEventListener('click',function(){
+    document.querySelectorAll('.filter').forEach(function(x){x.classList.remove('active');});
+    b.classList.add('active'); renderProjects(b.dataset.f);
+  });});
+
+  // ---------- GALLERY ----------
+  var ga = DATA.gallery||{};
+  setText('d-gal-eyebrow', ga.eyebrow); setText('d-gal-heading', ga.heading); setHTML('d-gal-intro', sep(ga.intro));
+  setHTML('d-gal', (ga.items||[]).map(function(g){
+    return '<div class="gal reveal"><img src="'+esc(g.image)+'" alt="'+esc(g.caption)+'" loading="lazy" onerror="this.remove()">'+
+           '<div class="gal-ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg><small>'+esc(g.caption)+'</small><span>Photo coming soon</span></div></div>';
+  }).join(''));
+
+  // ---------- ABOUT ----------
+  var ab = DATA.about||{};
+  setText('d-about-eyebrow', ab.eyebrow); setText('d-about-heading', ab.heading);
+  setHTML('d-about-paras', (ab.paragraphs||[]).map(function(p){return '<p>'+brand(p)+'</p>';}).join(''));
+  if(ab.glanceTitle) setText('d-glance-title', ab.glanceTitle);
+  var check = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>';
+  setHTML('d-glance', (ab.glance||[]).map(function(r){
+    return '<div class="ap-row">'+check+'<div><b>'+esc(r.label)+'</b><p>'+sep(r.value)+'</p></div></div>';
+  }).join(''));
+
+  // ---------- CONTACT ----------
+  var ct = DATA.contact||{};
+  setText('d-contact-eyebrow', ct.eyebrow); setText('d-contact-heading', ct.heading); setHTML('d-contact-intro', sep(ct.intro));
+  [['d-phone',ct.phone],['d-note-phone',ct.phone],['d-foot-phone',ct.phone]].forEach(function(p){
+    var e=el(p[0]); if(e){ e.textContent=p[1]||''; e.href=telHref(p[1]); }
+  });
+  ['d-email','d-foot-email'].forEach(function(id){ var e=el(id); if(e){ e.textContent=ct.email||''; e.href='mailto:'+(ct.email||''); } });
+  var fs=el('d-form-send'); if(fs){ fs.href='mailto:'+(ct.email||'')+'?subject='+encodeURIComponent('Bid Request - Seek Construction'); }
+  var of=el('d-office'); if(of){ of.textContent=ct.address||''; of.href=mapsHref(ct.address); }
+  var fof=el('d-foot-office'); if(fof){
+    var parts=String(ct.address||'').split(/,(.+)/);
+    fof.innerHTML = esc(parts[0]||'') + (parts[1] ? '<br>'+esc(parts[1].trim()) : '');
+    fof.href=mapsHref(ct.address);
+  }
+  setHTML('d-area', '<b>Service Area</b>'+sep(ct.serviceArea)+'<b style="margin-top:1rem">Site Type</b>'+sep(ct.siteType));
+
+  // ---------- META ----------
+  if(DATA.meta){
+    if(DATA.meta.title) document.title=DATA.meta.title;
+    var md=document.querySelector('meta[name="description"]');
+    if(md && DATA.meta.description) md.setAttribute('content', DATA.meta.description);
+  }
+
+  // ---------- Year ----------
+  setText('yr', new Date().getFullYear());
+
+  // ---------- Sticky header shadow ----------
+  var head = document.querySelector('header.site');
+  addEventListener('scroll',function(){ head.classList.toggle('scrolled', scrollY>10); });
+
+  // ---------- Mobile menu ----------
+  var ham = el('ham'), nl = el('navlinks');
+  if(ham&&nl){ ham.addEventListener('click',function(){nl.classList.toggle('open');});
+    nl.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){nl.classList.remove('open');});}); }
+
+  // ---------- Reveal on scroll (fail-safe) ----------
+  var reveals = document.querySelectorAll('.reveal');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!('IntersectionObserver' in window) || reduce){
+    reveals.forEach(function(e){e.classList.add('in');});
+  } else {
+    var io = new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.08, rootMargin:'0px 0px -6% 0px'});
+    reveals.forEach(function(e){io.observe(e);});
+    addEventListener('load',function(){setTimeout(function(){reveals.forEach(function(e){e.classList.add('in');});},2200);});
+  }
+  } // end boot()
+
+  // The inline block above is the seed/offline fallback. The live site's content is
+  // managed by admin.html, which saves to data.json — so we prefer that when available.
+  function inline(){
+    try { return JSON.parse(document.getElementById('seek-data').textContent); }
+    catch(e){ console.error('Site content could not be read:', e); return null; }
+  }
+  fetch('data.json?v=' + Date.now(), {cache:'no-store'})
+    .then(function(r){ if(!r.ok) throw new Error('no data.json'); return r.json(); })
+    .then(function(d){ boot(d); })
+    .catch(function(){ var d = inline(); if(d) boot(d); });
+})();
+</script>
+</body>
+</html>
