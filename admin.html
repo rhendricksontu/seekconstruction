@@ -697,13 +697,23 @@
   }
 
   // Open the live site in a new tab, rendering the CURRENT unsaved edits.
+  var previewWin = null;
   function doPreview(){
     try {
       serializeData();
       localStorage.setItem('sc_preview_data', JSON.stringify(data));
     } catch(e){ topStatus('Could not open preview: '+e.message, 'err'); return; }
-    window.open('index.html?preview=1&t=' + Date.now(), 'scpreview');
-    topStatus('Preview opened in a new tab. Nothing has been published yet.', 'ok');
+    var url = 'index.html?preview=1&t=' + Date.now();
+    // Reuse one preview tab, but force it to reload to the fresh URL each time.
+    // (Relying on named-window navigation alone doesn't reliably reload across
+    // browsers, which makes edits look like they "didn't show up".)
+    if(previewWin && !previewWin.closed){
+      try { previewWin.location.replace(url); previewWin.focus(); }
+      catch(e){ previewWin = window.open(url, 'scpreview'); }
+    } else {
+      previewWin = window.open(url, 'scpreview');
+    }
+    topStatus('Preview opened with your latest changes. Nothing has been published yet.', 'ok');
   }
 
   function doSave(){
