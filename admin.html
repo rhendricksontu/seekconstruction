@@ -184,6 +184,7 @@
 
   <div class="savebar">
     <div class="info" id="saveinfo">All changes saved.</div>
+    <button class="btn ghost" id="btn-preview-changes" type="button">Preview</button>
     <button class="btn" id="btn-save" disabled>Save &amp; publish</button>
   </div>
 </div>
@@ -687,10 +688,26 @@
   // -------------------------------------------------------------------------
   // Save
   // -------------------------------------------------------------------------
-  function doSave(){
-    // write string-array editors (credentials, paragraphs) back into the data
+  // Fold the string-array editors (credentials, paragraphs) back into `data`
+  // and drop empty helper fields. Shared by Save and Preview.
+  function serializeData(){
     saveConverters.forEach(function(fn){ fn(); });
     cleanup(data);
+    return data;
+  }
+
+  // Open the live site in a new tab, rendering the CURRENT unsaved edits.
+  function doPreview(){
+    try {
+      serializeData();
+      localStorage.setItem('sc_preview_data', JSON.stringify(data));
+    } catch(e){ topStatus('Could not open preview: '+e.message, 'err'); return; }
+    window.open('index.html?preview=1&t=' + Date.now(), 'scpreview');
+    topStatus('Preview opened in a new tab. Nothing has been published yet.', 'ok');
+  }
+
+  function doSave(){
+    serializeData();
     busy('Publishing…');
     var json = JSON.stringify(data, null, 2) + '\n';
     var contentB64 = b64(enc.encode(json));
@@ -829,6 +846,7 @@
   });
 
   $('btn-save').addEventListener('click', doSave);
+  $('btn-preview-changes').addEventListener('click', doPreview);
   document.addEventListener('keydown', function(e){
     if((e.metaKey||e.ctrlKey) && e.key==='s'){ e.preventDefault(); if(!$('btn-save').disabled) doSave(); }
   });

@@ -885,6 +885,24 @@
     try { return JSON.parse(document.getElementById('seek-data').textContent); }
     catch(e){ console.error('Site content could not be read:', e); return null; }
   }
+  // Preview mode: the Site Editor (admin.html) can render unsaved edits by
+  // stashing them in localStorage and opening this page with ?preview=1.
+  function previewBanner(){
+    var b = document.createElement('div');
+    b.textContent = 'Preview of unsaved changes · not yet published';
+    b.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:9999;background:#d8932b;color:#0C243C;'+
+      'font:600 14px/1.4 system-ui,-apple-system,sans-serif;text-align:center;padding:9px 12px;box-shadow:0 2px 12px rgba(0,0,0,.25)';
+    document.body.appendChild(b);
+    document.body.style.paddingTop = '40px';
+    var hdr = document.querySelector('header.site'); if(hdr) hdr.style.top = '40px';
+  }
+  if(/[?&]preview=1(?:&|$)/.test(location.search)){
+    try{
+      var pv = localStorage.getItem('sc_preview_data');
+      if(pv){ boot(JSON.parse(pv)); previewBanner(); return; }
+    }catch(e){ /* fall through to the normal load */ }
+  }
+
   fetch('data.json?v=' + Date.now(), {cache:'no-store'})
     .then(function(r){ if(!r.ok) throw new Error('no data.json'); return r.json(); })
     .then(function(d){ boot(d); })
