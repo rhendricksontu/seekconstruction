@@ -266,11 +266,11 @@
   // -------------------------------------------------------------------------
   // GitHub API
   // -------------------------------------------------------------------------
-  function gh(method, path, body){
-    // 45s timeout so a stalled connection fails with a message instead of
-    // freezing the editor.
+  function gh(method, path, body, timeoutMs){
+    // Per-request timeout so a stalled connection fails with a message instead
+    // of freezing the editor.
     var ctrl = new AbortController();
-    var timer = setTimeout(function(){ ctrl.abort(); }, 45000);
+    var timer = setTimeout(function(){ ctrl.abort(); }, timeoutMs || 45000);
     return fetch(API + path, {
       method: method,
       signal: ctrl.signal,
@@ -360,9 +360,47 @@
     return set;
   }
 
+  function delay(ms){ return new Promise(function(res){ setTimeout(res, ms); }); }
+  // Worth retrying: network drops, timeouts, server errors, and GitHub's
+  // short-term rate limiting.
+  function isTransient(e){ return !e.status || e.status >= 500 || e.status === 429 || e.status === 403; }
+
+  // Upload one photo as a blob, retrying a few times on transient errors. The
+  // resulting sha is cached on the staged photo so a later retry of the whole
+  // publish skips photos that already uploaded.
+  function uploadOneBlob(g, path, attempt){
+    attempt = attempt || 1;
+    var pu = pendingUploads[path];
+    if(pu && pu.sha) return Promise.resolve(pu.sha);
+    return gh('POST', g + 'blobs', { content: pu.contentB64, encoding: 'base64' }, 60000)
+      .then(function(b){ if(pendingUploads[path]) pendingUploads[path].sha = b.sha; return b.sha; })
+      .catch(function(e){
+        if(attempt < 4 && isTransient(e)) return delay(700 * attempt).then(function(){ return uploadOneBlob(g, path, attempt + 1); });
+        throw e;
+      });
+  }
+
+  // Upload photos a few at a time (not all at once) so big batches don't
+  // overwhelm the connection or trip rate limits. Reports progress.
+  function uploadBlobs(g, imgPaths, onProgress){
+    var total = imgPaths.length, finished = 0, entries = [], idx = 0, CONCURRENCY = 4;
+    function next(){
+      if(idx >= total) return Promise.resolve();
+      var path = imgPaths[idx++];
+      return uploadOneBlob(g, path).then(function(sha){
+        entries.push({ path: path, mode: '100644', type: 'blob', sha: sha });
+        finished++; if(onProgress) onProgress('Uploading photos… ' + finished + ' of ' + total);
+        return next();
+      });
+    }
+    var workers = [];
+    for(var i = 0; i < Math.min(CONCURRENCY, total); i++) workers.push(next());
+    return Promise.all(workers).then(function(){ return entries; });
+  }
+
   // Publish data.json + any staged photos as a SINGLE atomic commit via the
   // Git Data API (one commit -> one site rebuild, no half-applied states).
-  function publishAll(jsonText, imgPaths){
+  function publishAll(jsonText, imgPaths, onProgress){
     var g = '/repos/' + cfg.owner + '/' + cfg.repo + '/git/';
     var baseCommit, baseTree;
     return gh('GET', g + 'ref/heads/' + cfg.branch).then(function(ref){
@@ -370,11 +408,9 @@
       return gh('GET', g + 'commits/' + baseCommit);
     }).then(function(commit){
       baseTree = commit.tree.sha;
-      return Promise.all(imgPaths.map(function(p){
-        return gh('POST', g + 'blobs', { content: pendingUploads[p].contentB64, encoding: 'base64' })
-          .then(function(b){ return { path: p, mode: '100644', type: 'blob', sha: b.sha }; });
-      }));
+      return uploadBlobs(g, imgPaths, onProgress);
     }).then(function(imgEntries){
+      if(onProgress) onProgress('Saving your changes…');
       var tree = [{ path: 'data.json', mode: '100644', type: 'blob', content: jsonText }].concat(imgEntries);
       return gh('POST', g + 'trees', { base_tree: baseTree, tree: tree });
     }).then(function(tree){
@@ -761,7 +797,13 @@
   function doPreview(){
     try {
       serializeData();
-      localStorage.setItem('sc_preview_data', JSON.stringify(previewData()));
+      try {
+        localStorage.setItem('sc_preview_data', JSON.stringify(previewData()));
+      } catch(quota){
+        // Too many staged photos to inline for preview — fall back to paths so
+        // the preview still opens (brand-new photos show after publishing).
+        localStorage.setItem('sc_preview_data', JSON.stringify(data));
+      }
     } catch(e){ topStatus('Could not open preview: '+e.message, 'err'); return; }
     var url = 'index.html?preview=1&t=' + Date.now();
     // Reuse one preview tab, but force it to reload to the fresh URL each time.
@@ -782,16 +824,17 @@
     var refs = referencedImagePaths();
     var imgs = Object.keys(pendingUploads).filter(function(p){ return refs[p]; });
     busy(imgs.length
-      ? ('Publishing your changes and ' + imgs.length + ' photo' + (imgs.length>1?'s':'') + '…')
+      ? ('Publishing ' + imgs.length + ' photo' + (imgs.length>1?'s':'') + ' and your changes…')
       : 'Publishing your changes…');
-    publishAll(json, imgs).then(function(){
+    publishAll(json, imgs, function(msg){ $('overlay-text').textContent = msg; }).then(function(){
       imgs.forEach(function(p){ delete pendingUploads[p]; });
       done(); markClean();
       topStatus('Saved! The live site will refresh in about a minute.', 'ok');
     }).catch(function(e){
       done();
       topStatus('Save failed: '+e.message, 'err');
-      alert('Could not publish: '+e.message+'\n\nYour changes are still here. Please click Save & publish again in a moment.');
+      alert('Could not publish everything: '+e.message+'\n\nNothing was lost — all your edits and photos are still here in the editor. '+
+            'Just click Save & publish again; photos that already uploaded will be skipped, so the retry is quick.');
     });
   }
 
