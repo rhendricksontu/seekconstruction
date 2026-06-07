@@ -789,6 +789,11 @@
     var copy = JSON.parse(JSON.stringify(data));
     if(copy.hero && copy.hero.heroImage && pendingUploads[copy.hero.heroImage]) copy.hero.heroImage = pendingUploads[copy.hero.heroImage].dataUrl;
     ((copy.gallery && copy.gallery.items) || []).forEach(function(g){ if(g.image && pendingUploads[g.image]) g.image = pendingUploads[g.image].dataUrl; });
+    // Inline staged project photos too, so preview never requests a not-yet-published
+    // URL (which the CDN would cache as a 404 and keep serving after publish).
+    ((copy.projects && copy.projects.items) || []).forEach(function(p){
+      if(p.img){ var path = 'images/projects/' + p.img; if(pendingUploads[path]) p.img = pendingUploads[path].dataUrl; }
+    });
     return copy;
   }
 

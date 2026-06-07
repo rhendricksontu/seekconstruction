@@ -769,7 +769,8 @@
   var grid = el('projgrid');
   function renderProjects(filter){
     grid.innerHTML = projects.filter(function(p){return filter==='all'||p.t===filter;}).map(function(p){
-      var img = p.img ? '<img src="images/projects/'+esc(p.img)+'" alt="'+esc(p.n)+'" loading="lazy" onerror="this.remove()">' : '';
+      var psrc = p.img ? (/^(data:|https?:|\/)/.test(p.img) ? p.img : 'images/projects/'+p.img) : '';
+      var img = psrc ? '<img src="'+esc(psrc)+'" alt="'+esc(p.n)+'" loading="lazy" onerror="this.remove()">' : '';
       return '<div class="proj"><div class="thumb"><span class="ptag '+esc(p.t)+'">'+esc(p.t)+'</span>'+img+camera+'</div>'+
              '<div class="body"><h3>'+esc(p.n)+'</h3><div class="gc">GC <span class="sep">·</span> <b>'+esc(p.gc)+'</b></div></div></div>';
     }).join('');
