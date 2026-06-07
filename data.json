@@ -22,7 +22,7 @@
         "label": "Engineer-Led Ops"
       }
     ],
-    "heroImage": "images/hero.jpg",
+    "heroImage": "images/hero-mq42c2sv.jpg",
     "cardCaption": "Site Work · Grading · Utilities"
   },
   "credentials": [
@@ -125,17 +125,20 @@
       {
         "n": "Kickapoo Housing",
         "gc": "Thompson Construction",
-        "t": "Tribal"
+        "t": "Tribal",
+        "img": "kickapoo-housing-mq42ixrz.jpg"
       },
       {
         "n": "Edmond City Hall",
         "gc": "Flintco",
-        "t": "Public"
+        "t": "Public",
+        "img": "edmond-city-hall-mq42dwy1.jpg"
       },
       {
-        "n": "SAG",
+        "n": "Salad & Go",
         "gc": "Stansell",
-        "t": "Commercial"
+        "t": "Commercial",
+        "img": "sag-mq42smf0.jpg"
       },
       {
         "n": "Chandler Schools",
@@ -148,9 +151,10 @@
         "t": "Public"
       },
       {
-        "n": "Hafer Park, Edmond",
+        "n": "Hafer Park",
         "gc": "ICGM",
-        "t": "Public"
+        "t": "Public",
+        "img": "hafer-park-edmond-mq42t05s.jpg"
       },
       {
         "n": "Hinton Child Care",
@@ -160,10 +164,11 @@
       {
         "n": "Behavioral Health Facility",
         "gc": "Manhattan",
-        "t": "Tribal"
+        "t": "Tribal",
+        "img": "behavioral-health-facility-mq42cxd9.jpg"
       },
       {
-        "n": "OU Infrastructure",
+        "n": "OU IT Infrastructure",
         "gc": "Thompson Construction",
         "t": "Public"
       },
@@ -188,12 +193,12 @@
         "t": "Public"
       },
       {
-        "n": "Antlers",
+        "n": "Elder Housing",
         "gc": "TTA Construction",
         "t": "Tribal"
       },
       {
-        "n": "Lindsey",
+        "n": "Lindsey Schools",
         "gc": "Joe D Hall",
         "t": "Public"
       },
@@ -213,11 +218,6 @@
         "t": "Private"
       },
       {
-        "n": "HAKTO",
-        "gc": "Thompson Construction",
-        "t": "Tribal"
-      },
-      {
         "n": "Brakes Plus, Ardmore",
         "gc": "Devier Enterprises LLC",
         "t": "Commercial"
@@ -229,18 +229,13 @@
       },
       {
         "n": "Wynnewood Public Schools",
-        "gc": "Mac Hill",
+        "gc": "MacHill",
         "t": "Public"
       },
       {
         "n": "Fort Sill Credit Union",
         "gc": "Geddes-Armstrong Construction",
         "t": "Commercial"
-      },
-      {
-        "n": "HAKTO Round 3",
-        "gc": "Thompson Construction",
-        "t": "Tribal"
       },
       {
         "n": "Shawnee YMCA",
