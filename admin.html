@@ -258,7 +258,8 @@
   var cfg = null;       // {owner, repo, branch}
   var token = null;     // in memory only
   var data = null;      // the content object
-  var dataSha = null;   // sha of data.json for updates
+  var dataSha = null;   // sha of data.json (kept for reference)
+  var pendingUploads = {};  // repo path -> { contentB64, dataUrl } for photos not yet published
   var dirty = false;
   var activeTab = 'hero';
 
@@ -266,8 +267,13 @@
   // GitHub API
   // -------------------------------------------------------------------------
   function gh(method, path, body){
+    // 45s timeout so a stalled connection fails with a message instead of
+    // freezing the editor.
+    var ctrl = new AbortController();
+    var timer = setTimeout(function(){ ctrl.abort(); }, 45000);
     return fetch(API + path, {
       method: method,
+      signal: ctrl.signal,
       headers: {
         'Authorization': 'Bearer ' + token,
         'Accept': 'application/vnd.github+json',
@@ -283,6 +289,10 @@
         }
         return j;
       });
+    }).then(function(res){ clearTimeout(timer); return res; }, function(err){
+      clearTimeout(timer);
+      if(err && err.name === 'AbortError') throw new Error('The request timed out. Check your internet connection and try again.');
+      throw err;
     });
   }
   function repoPath(p){ return '/repos/'+cfg.owner+'/'+cfg.repo+'/contents/'+p; }
@@ -328,13 +338,49 @@
     });
   }
 
-  // dir = folder in repo (e.g. 'images' or 'images/projects'); returns the
-  // full repo path that was written.
-  function uploadImage(file, dir, nameHint){
+  // Stage a photo for the next publish: resize it in the browser and hold it in
+  // memory. Nothing is sent to GitHub yet — it ships with Save & publish, so
+  // several photos plus text edits all go out in ONE commit.
+  function stageImage(file, dir, nameHint){
     return resizeToJpegB64(file, 1600, 0.82).then(function(b64data){
-      var name = slug(nameHint) + '-' + Date.now().toString(36) + '.jpg';
+      var name = slug(nameHint) + '-' + Date.now().toString(36) + '-' + Math.floor(Math.random()*46656).toString(36) + '.jpg';
       var path = dir + '/' + name;
-      return putFileB64(path, b64data, 'Add image '+name).then(function(){ return path; });
+      pendingUploads[path] = { contentB64: b64data, dataUrl: 'data:image/jpeg;base64,' + b64data };
+      return path;
+    });
+  }
+
+  // Image repo-paths the content currently points at (so we skip staged photos
+  // that were replaced or removed before publishing).
+  function referencedImagePaths(){
+    var set = {};
+    if(data.hero && data.hero.heroImage) set[data.hero.heroImage] = 1;
+    ((data.gallery && data.gallery.items) || []).forEach(function(g){ if(g.image) set[g.image] = 1; });
+    ((data.projects && data.projects.items) || []).forEach(function(p){ if(p.img) set['images/projects/' + p.img] = 1; });
+    return set;
+  }
+
+  // Publish data.json + any staged photos as a SINGLE atomic commit via the
+  // Git Data API (one commit -> one site rebuild, no half-applied states).
+  function publishAll(jsonText, imgPaths){
+    var g = '/repos/' + cfg.owner + '/' + cfg.repo + '/git/';
+    var baseCommit, baseTree;
+    return gh('GET', g + 'ref/heads/' + cfg.branch).then(function(ref){
+      baseCommit = ref.object.sha;
+      return gh('GET', g + 'commits/' + baseCommit);
+    }).then(function(commit){
+      baseTree = commit.tree.sha;
+      return Promise.all(imgPaths.map(function(p){
+        return gh('POST', g + 'blobs', { content: pendingUploads[p].contentB64, encoding: 'base64' })
+          .then(function(b){ return { path: p, mode: '100644', type: 'blob', sha: b.sha }; });
+      }));
+    }).then(function(imgEntries){
+      var tree = [{ path: 'data.json', mode: '100644', type: 'blob', content: jsonText }].concat(imgEntries);
+      return gh('POST', g + 'trees', { base_tree: baseTree, tree: tree });
+    }).then(function(tree){
+      return gh('POST', g + 'commits', { message: 'Update site content', tree: tree.sha, parents: [baseCommit] });
+    }).then(function(commit){
+      return gh('PATCH', g + 'refs/heads/' + cfg.branch, { sha: commit.sha });
     });
   }
 
@@ -390,8 +436,10 @@
       thumb.innerHTML = '';
       var val = obj[key];
       if(val){
-        var src = storeMode==='name' ? (dir + '/' + val) : val;
-        thumb.appendChild(ce('img', {src: rawUrl(src), alt:''}));
+        var path = storeMode==='name' ? (dir + '/' + val) : val;
+        // staged (not-yet-published) photos preview from memory; existing ones load from the repo
+        var src = pendingUploads[path] ? pendingUploads[path].dataUrl : rawUrl(path);
+        thumb.appendChild(ce('img', {src: src, alt:''}));
       } else {
         thumb.appendChild(ce('span', {text:'No image yet'}));
       }
@@ -405,13 +453,15 @@
 
     fileInput.addEventListener('change', function(){
       var f = fileInput.files[0]; if(!f) return;
-      busy('Uploading photo…');
-      uploadImage(f, dir, nameHint || label).then(function(path){
+      // Prepared locally and instantly — no network here, so this never blocks
+      // the editor. It uploads when you Save & publish.
+      upBtn.disabled = true; var prev = upBtn.textContent; upBtn.textContent = 'Adding…';
+      stageImage(f, dir, nameHint || label).then(function(path){
         obj[key] = storeMode==='name' ? path.split('/').pop() : path;
-        paint(); rmBtn.classList.remove('hidden'); upBtn.textContent='Replace photo';
-        markDirty(); done(); topStatus('Photo uploaded. Click Save & publish when finished.', 'ok');
-      }).catch(function(e){ done(); topStatus('Upload failed: '+e.message, 'err'); })
-        .then(function(){ fileInput.value=''; });
+        paint(); rmBtn.classList.remove('hidden'); upBtn.textContent = 'Replace photo';
+        markDirty(); topStatus('Photo added. It will go live when you click Save & publish.', 'ok');
+      }).catch(function(e){ upBtn.textContent = prev; topStatus('Could not add that photo: '+e.message, 'err'); })
+        .then(function(){ upBtn.disabled = false; fileInput.value=''; });
     });
 
     paint();
@@ -696,12 +746,22 @@
     return data;
   }
 
+  // Build a preview copy where staged (not-yet-published) photos are inlined so
+  // the preview shows them too. (Project photos use a rebuilt path, so brand-new
+  // project photos appear only after publishing.)
+  function previewData(){
+    var copy = JSON.parse(JSON.stringify(data));
+    if(copy.hero && copy.hero.heroImage && pendingUploads[copy.hero.heroImage]) copy.hero.heroImage = pendingUploads[copy.hero.heroImage].dataUrl;
+    ((copy.gallery && copy.gallery.items) || []).forEach(function(g){ if(g.image && pendingUploads[g.image]) g.image = pendingUploads[g.image].dataUrl; });
+    return copy;
+  }
+
   // Open the live site in a new tab, rendering the CURRENT unsaved edits.
   var previewWin = null;
   function doPreview(){
     try {
       serializeData();
-      localStorage.setItem('sc_preview_data', JSON.stringify(data));
+      localStorage.setItem('sc_preview_data', JSON.stringify(previewData()));
     } catch(e){ topStatus('Could not open preview: '+e.message, 'err'); return; }
     var url = 'index.html?preview=1&t=' + Date.now();
     // Reuse one preview tab, but force it to reload to the fresh URL each time.
@@ -718,17 +778,20 @@
 
   function doSave(){
     serializeData();
-    busy('Publishing…');
     var json = JSON.stringify(data, null, 2) + '\n';
-    var contentB64 = b64(enc.encode(json));
-    putFileB64('data.json', contentB64, 'Update site content', dataSha).then(function(res){
-      dataSha = res.content.sha;
+    var refs = referencedImagePaths();
+    var imgs = Object.keys(pendingUploads).filter(function(p){ return refs[p]; });
+    busy(imgs.length
+      ? ('Publishing your changes and ' + imgs.length + ' photo' + (imgs.length>1?'s':'') + '…')
+      : 'Publishing your changes…');
+    publishAll(json, imgs).then(function(){
+      imgs.forEach(function(p){ delete pendingUploads[p]; });
       done(); markClean();
       topStatus('Saved! The live site will refresh in about a minute.', 'ok');
     }).catch(function(e){
       done();
       topStatus('Save failed: '+e.message, 'err');
-      alert('Could not save: '+e.message+'\n\nYour changes are still here — try Save again in a moment.');
+      alert('Could not publish: '+e.message+'\n\nYour changes are still here. Please click Save & publish again in a moment.');
     });
   }
 
