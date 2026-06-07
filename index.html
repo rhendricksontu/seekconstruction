@@ -397,8 +397,10 @@
     </div>
     <div class="hero-card">
       <div class="ph">
-        <!-- Drop a photo at images/hero.jpg to fill this. Later, swap this <img> for a <video autoplay muted loop playsinline src="images/hero.mp4"></video>. -->
-        <img id="d-heroimg" src="images/hero.jpg" alt="Seek Construction site work" onerror="this.remove()">
+        <!-- src is set by JS from data.json (hero.heroImage). No hardcoded src:
+             a missing default file would 404 and onerror would remove the element
+             before the real photo is applied. -->
+        <img id="d-heroimg" alt="Seek Construction site work" onerror="this.remove()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="11" r="2"/><path d="M3 17l5-4 4 3 3-2 6 5"/></svg>
         <small>Project Photo <span class="sep">·</span> Coming Soon</small>
       </div>
