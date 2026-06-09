@@ -143,12 +143,14 @@
       {
         "n": "Chandler Schools",
         "gc": "Joe D Hall",
-        "t": "Public"
+        "t": "Public",
+        "img": "chandler-schools-mq72sq3n-i9i.jpg"
       },
       {
         "n": "Deer Creek Schools",
         "gc": "Willowbrook CMS",
-        "t": "Public"
+        "t": "Public",
+        "img": "deer-creek-schools-mq72t91i-cg3.jpg"
       },
       {
         "n": "Hafer Park",
@@ -159,7 +161,8 @@
       {
         "n": "Hinton Child Care",
         "gc": "Thompson Construction",
-        "t": "Tribal"
+        "t": "Tribal",
+        "img": "hinton-child-care-mq72twz5-gv1.jpg"
       },
       {
         "n": "Behavioral Health Facility",
@@ -170,12 +173,14 @@
       {
         "n": "OU IT Infrastructure",
         "gc": "Thompson Construction",
-        "t": "Public"
+        "t": "Public",
+        "img": "ou-it-infrastructure-mq72usgn-qkr.jpg"
       },
       {
         "n": "Oakdale School",
         "gc": "Willowbrook CMS",
-        "t": "Public"
+        "t": "Public",
+        "img": "oakdale-school-mq72vj1v-h7n.jpg"
       },
       {
         "n": "Midwest City Schools",
@@ -185,17 +190,20 @@
       {
         "n": "ReMerge",
         "gc": "Nabholz",
-        "t": "Public"
+        "t": "Public",
+        "img": "remerge-mq72wjjc-yxy.jpg"
       },
       {
         "n": "Dove Academy",
         "gc": "ICGM",
-        "t": "Public"
+        "t": "Public",
+        "img": "dove-academy-mq72x5de-1sk.jpg"
       },
       {
         "n": "Elder Housing",
         "gc": "TTA Construction",
-        "t": "Tribal"
+        "t": "Tribal",
+        "img": "elder-housing-mq72xyah-f16.jpg"
       },
       {
         "n": "Lindsey Schools",
@@ -205,42 +213,50 @@
       {
         "n": "Everest OU",
         "gc": "Manhattan",
-        "t": "Public"
+        "t": "Public",
+        "img": "everest-ou-mq72yv9t-xya.jpg"
       },
       {
         "n": "Brakes Plus, Norman",
         "gc": "JC Curtis Construction",
-        "t": "Commercial"
+        "t": "Commercial",
+        "img": "brakes-plus-norman-mq72znry-j5n.jpg"
       },
       {
         "n": "Mt. St. Mary",
         "gc": "AC Owen Construction",
-        "t": "Private"
+        "t": "Private",
+        "img": "mt-st-mary-mq730ey4-dam.jpg"
       },
       {
         "n": "Brakes Plus, Ardmore",
         "gc": "Devier Enterprises LLC",
-        "t": "Commercial"
+        "t": "Commercial",
+        "img": "brakes-plus-ardmore-mq73194s-g5a.jpg"
       },
       {
         "n": "Blue Beacon",
         "gc": "TrailBlazer",
-        "t": "Commercial"
+        "t": "Commercial",
+        "img": "blue-beacon-mq731qhs-el6.jpg"
       },
       {
         "n": "Wynnewood Public Schools",
         "gc": "MacHill",
-        "t": "Public"
+        "t": "Public",
+        "img": "wynnewood-public-schools-mq732jig-j9v.jpg"
       },
       {
         "n": "Fort Sill Credit Union",
         "gc": "Geddes-Armstrong Construction",
-        "t": "Commercial"
+        "t": "Commercial",
+        "img": "fort-sill-credit-union-mq7335n7-oey.jpg"
       },
       {
         "n": "Shawnee YMCA",
         "gc": "AC Owen Construction",
-        "t": "Public"
+        "t": "Public",
+        "img": "shawnee-ymca-mq733v6u-h98.jpg"
       },
       {
         "n": "7 Brew, SW 104th",
